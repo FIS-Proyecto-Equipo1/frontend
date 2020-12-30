@@ -8,6 +8,15 @@
 - `npm i argon-dashboard-react`
 - `npm start`
 
+## Explicación Front
+
+- Primero existen dos formas de loguearse: admin o user
+- routes.js -> acceso y enrutamiento a cada microservicio
+- assets -> recursos
+- components -> componentes de React
+- views -> componentes para renderizar el front
+- index.js -> primero se renderiza el Auth para que haya login 
+
 **Complex Documentation**
 
 Each element is well presented in a very complex documentation. You can read more about the idea behind this [dashboard here](https://demos.creative-tim.com/argon-dashboard-react/#/documentation/overview?ref=creativetim). You can check the [components here](https://demos.creative-tim.com/argon-dashboard-react/#/documentation/alerts?ref=creativetim) and the [foundation here](https://demos.creative-tim.com/argon-dashboard/#/documentation/colors?ref=creativetim).
