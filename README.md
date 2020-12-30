@@ -1,4 +1,6 @@
-# [Urbanio]
+![Alt text] Urbanio
+
+![alt tag](/Users/rodri/Documents/US - FIS/frontend/src/assets/img/readme/Captura de pantalla 2020-12-30 a las 16.13.18.png)
 
  ![version](https://img.shields.io/badge/version-1.1.0-blue.svg)  ![license](https://img.shields.io/badge/license-MIT-blue.svg) [![GitHub issues open](https://img.shields.io/github/issues/creativetimofficial/argon-dashboard-react.svg?maxAge=2592000)](https://github.com/creativetimofficial/argon-dashboard-react/issues?q=is%3Aopen+is%3Aissue) [![GitHub issues closed](https://img.shields.io/github/issues-closed-raw/creativetimofficial/argon-dashboard-react.svg?maxAge=2592000)](https://github.com/creativetimofficial/argon-dashboard-react/issues?q=is%3Aissue+is%3Aclosed) [![Join the chat at https://gitter.im/NIT-dgp/General](https://badges.gitter.im/NIT-dgp/General.svg)](https://gitter.im/creative-tim-general/Lobby) [![Chat](https://img.shields.io/badge/chat-on%20discord-7289da.svg)](https://discord.gg/E4aHAQy)
 
@@ -15,6 +17,8 @@
 - components -> componentes de React
 - views -> componentes para renderizar el front
 - index.js -> primero se renderiza el Auth para que haya login 
+
+# Style
 
 - Change icon size login -> frontend/src/assets/scss/argon-dashboard/custom/navbars/_navbar.scss
 - Change bg color upper -> frontend/src/assets/scss/argon-dashboard/custom/mixins/_background-variant.scss
