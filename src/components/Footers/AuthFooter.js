@@ -36,7 +36,7 @@ class Login extends React.Component {
                     href="https://www.creative-tim.com?ref=adr-auth-footer"
                     target="_blank"
                   >
-                    Creative Tim
+                    Urbanio
                   </a>
                 </div>
               </Col>
@@ -47,7 +47,7 @@ class Login extends React.Component {
                       href="https://www.creative-tim.com?ref=adr-auth-footer"
                       target="_blank"
                     >
-                      Creative Tim
+                      Urbanio Team
                     </NavLink>
                   </NavItem>
                   <NavItem>
