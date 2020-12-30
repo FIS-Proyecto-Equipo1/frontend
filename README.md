@@ -18,7 +18,7 @@
 - views -> componentes para renderizar el front
 - index.js -> primero se renderiza el Auth para que haya login 
 
-# Style
+## Style
 
 - Change icon size login -> frontend/src/assets/scss/argon-dashboard/custom/navbars/_navbar.scss
 - Change bg color upper -> frontend/src/assets/scss/argon-dashboard/custom/mixins/_background-variant.scss
