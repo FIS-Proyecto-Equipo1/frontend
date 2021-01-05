@@ -1,6 +1,6 @@
 class VehiculosApi {
     //static API_BASE_URL = "https://fis-2020-vehicles.herokuapp.com/api/v1";
-    static API_BASE_URL = "https://fis-2020-vehicles.herokuapp.com/api/v1";
+    static API_BASE_URL = "https://urbanio-vehiculos.herokuapp.com/api/v1";
 
     static requestHeaders(){
         return {}
