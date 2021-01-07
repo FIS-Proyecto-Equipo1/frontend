@@ -37,10 +37,27 @@ class NuevoVehiculo extends React.Component {
         return(
             <tr>
                 <td><input className="form-control" name="matricula" value = {this.state.matricula} onChange={this.changeVehiculo}/></td>
-                <td><input className="form-control" name="estado" value = {this.state.estado} onChange={this.changeVehiculo}/></td>
-                <td><input className="form-control" name="permiso" value = {this.state.permiso} onChange={this.changeVehiculo}/></td>
-                <td><input className="form-control" name="localizacion" value = {this.state.localizacion} onChange={this.changeVehiculo}/></td>
-                <td><input className="form-control" name="tipo" value = {this.state.tipo} onChange={this.changeVehiculo}/></td>
+                <td><select name="estado" id="estado" value={this.state.estado} onChange={this.changeVehiculo}>
+                    <option value = "">--</option>
+                    <option value = "TRAYECTO">TRAYECTO</option>
+                    <option value = "DISPONIBLE" >DISPONIBLE</option>
+                    <option value = "NODISPONIBLE" >NODISPONIBLE</option>
+                    <option value = "RESERVADO" >RESERVADO</option>RESERVADO
+                    </select></td>
+                <td><select name="permiso" id="permiso" value={this.state.permiso} onChange={this.changeVehiculo}>
+                    <option value = "">--</option>
+                    <option value = "AB">AB</option>
+                    <option value = "B" >B</option>
+                    <option value = "NO" >NO</option>
+                    </select></td>
+                <td><input class="form-control inputstl"  name="localizacion" value = {this.state.localizacion} onChange={this.changeVehiculo}/></td>
+                <td><select name="tipo" id="tipo" value={this.state.tipo} onChange={this.changeVehiculo}>
+                    <option value = "">--</option>
+                    <option value = "Moto">TRAYECTO</option>
+                    <option value = "Coche" >DISPONIBLE</option>
+                    <option value = "Patin" >NODISPONIBLE</option>
+                    <option value = "Bici" >RESERVADO</option>RESERVADO
+                    </select></td>
                 <td><button className="btn btn-primary" onClick={this.clickAdd}>Add Vehiculo</button></td>
             </tr>
         );
