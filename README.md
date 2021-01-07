@@ -8,11 +8,11 @@
 
 - `npm i`
 - Si os da error de Windows: node-sass o windowsx86_64<loquesea>.node (a mí con Mac no hubo problema)
- - primero descargar: `https://github.com/sass/node-sass/releases/download/v4.13.1/win32-ia32-79_binding.node`
- - ejecutar: `npm install --global --production windows-build-tools``
- - meterlo en una nueva carpeta (dónde no lo borréis) y  ejecutar desde un powershell como administrador: `set SASS_BINARY_PATH=C:\Users\<user>\<path-a-tu-carpeta>\win32-ia32-79_binding.node`
- - te meter en la carpeta con PowerShell y : `npm install node-sass`
- - volveis a hacer: `npm i`
+  - primero descargar: `https://github.com/sass/node-sass/releases/download/v4.13.1/win32-ia32-79_binding.node`
+  - ejecutar: `npm install --global --production windows-build-tools``
+  - meterlo en una nueva carpeta (dónde no lo borréis) y  ejecutar desde un powershell como administrador: `set SASS_BINARY_PATH=C:\Users\<user>\<path-a-tu-carpeta>\win32-ia32-79_binding.node`
+  - entrar en la carpeta con PowerShell y : `npm install node-sass`
+  - volveis a hacer: `npm i`
 - `npm start`
 
 ## Explicación Front
