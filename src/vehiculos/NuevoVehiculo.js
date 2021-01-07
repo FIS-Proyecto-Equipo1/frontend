@@ -42,7 +42,7 @@ class NuevoVehiculo extends React.Component {
                     <option value = "TRAYECTO">TRAYECTO</option>
                     <option value = "DISPONIBLE" >DISPONIBLE</option>
                     <option value = "NODISPONIBLE" >NODISPONIBLE</option>
-                    <option value = "RESERVADO" >RESERVADO</option>RESERVADO
+                    <option value = "RESERVADO" >RESERVADO</option>
                     </select></td>
                 <td><select name="permiso" id="permiso" value={this.state.permiso} onChange={this.changeVehiculo}>
                     <option value = "">--</option>
@@ -53,10 +53,10 @@ class NuevoVehiculo extends React.Component {
                 <td><input class="form-control inputstl"  name="localizacion" value = {this.state.localizacion} onChange={this.changeVehiculo}/></td>
                 <td><select name="tipo" id="tipo" value={this.state.tipo} onChange={this.changeVehiculo}>
                     <option value = "">--</option>
-                    <option value = "Moto">TRAYECTO</option>
-                    <option value = "Coche" >DISPONIBLE</option>
-                    <option value = "Patin" >NODISPONIBLE</option>
-                    <option value = "Bici" >RESERVADO</option>RESERVADO
+                    <option value = "Moto">Moto</option>
+                    <option value = "Coche" >Coche</option>
+                    <option value = "Patin" >Patin</option>
+                    <option value = "Bici" >Bici</option>
                     </select></td>
                 <td><button className="btn btn-primary" onClick={this.clickAdd}>Add Vehiculo</button></td>
             </tr>
