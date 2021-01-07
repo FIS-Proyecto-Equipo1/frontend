@@ -1,5 +1,6 @@
 class LoginApi {
     //static API_BASE_URL = "https://fis-2020-vehicles.herokuapp.com/api/v1";
+    // static API_BASE_URL = "https://cors-anywhere.herokuapp.com/https://urbanio-autenticacion.herokuapp.com/api/v1";
     static API_BASE_URL = "https://urbanio-autenticacion.herokuapp.com/api/v1";
 
     static requestHeaders(){
@@ -18,7 +19,7 @@ class LoginApi {
     //     })
     // }
     
-    static postUser(username, password){
+    static postUser(){        
         const headers = {
             Accept: 'application/json',
             'Content-Type': 'application/json'
@@ -26,7 +27,10 @@ class LoginApi {
         return fetch(LoginApi.API_BASE_URL + "/login", {
             method: 'POST',
             headers: headers,
-            body: {},
+            body: JSON.stringify({
+                "username": document.getElementById("username").value,
+                "password": document.getElementById("password").value
+            }),
         }).then(response => {
             console.log(response);
             return response.json();

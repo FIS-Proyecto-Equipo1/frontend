@@ -101,7 +101,7 @@ class Login extends React.Component {
                   </label>
                 </div>
                 <div className="text-center">
-                  <Button href="." onClick={LoginApi.postUser(document.getElementById("username"), document.getElementById("password"))} className="my-4" color="primary" type="button">
+                  <Button onClick={() => { LoginApi.postUser(); }} className="my-4" color="primary" type="button">
                     Sign in
                   </Button>
                 </div>
