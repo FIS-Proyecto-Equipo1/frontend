@@ -17,6 +17,8 @@
 */
 import React from "react";
 
+import LoginApi from "../../login/LoginApi.js";
+
 // reactstrap components
 import {
   Button,
@@ -72,7 +74,7 @@ class Login extends React.Component {
                         <i className="ni ni-email-83" />
                       </InputGroupText>
                     </InputGroupAddon>
-                    <Input placeholder="Email" type="email" autoComplete="new-email"/>
+                    <Input id="username" placeholder="Email" type="email" autoComplete="new-email"/>
                   </InputGroup>
                 </FormGroup>
                 <FormGroup>
@@ -82,7 +84,7 @@ class Login extends React.Component {
                         <i className="ni ni-lock-circle-open" />
                       </InputGroupText>
                     </InputGroupAddon>
-                    <Input placeholder="Password" type="password" autoComplete="new-password"/>
+                    <Input id="password" placeholder="Password" type="password" autoComplete="new-password"/>
                   </InputGroup>
                 </FormGroup>
                 <div className="custom-control custom-control-alternative custom-checkbox">
@@ -99,7 +101,7 @@ class Login extends React.Component {
                   </label>
                 </div>
                 <div className="text-center">
-                  <Button className="my-4" color="primary" type="button">
+                  <Button href="." onClick={LoginApi.postUser(document.getElementById("username"), document.getElementById("password"))} className="my-4" color="primary" type="button">
                     Sign in
                   </Button>
                 </div>
