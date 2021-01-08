@@ -39,7 +39,7 @@ var routes = [
     layout: "/admin"
   },
   {
-    path: "/maps",
+    path: "/viajes",
     name: "Viajes",
     icon: "ni ni-pin-3 text-orange",
     component: Maps,

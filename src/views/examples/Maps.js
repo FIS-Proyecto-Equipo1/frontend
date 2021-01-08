@@ -16,7 +16,12 @@
 
 */
 import React from "react";
-// react plugin used to create google maps
+import Header from "components/Headers/Header.js";
+import { Card, Container, Row } from "reactstrap";
+import Viajes from "viajes/viajes.js";
+import Viajes_curso from "viajes/viajes_curso.js";
+
+/*// react plugin used to create google maps
 import {
   withScriptjs,
   withGoogleMap,
@@ -84,15 +89,15 @@ const MapWrapper = withScriptjs(
       <Marker position={{ lat: 40.748817, lng: -73.985428 }} />
     </GoogleMap>
   ))
-);
+);*/
 
-class Maps extends React.Component {
+/*class Maps extends React.Component {
   render() {
     return (
       <>
         <Header />
-        {/* Page content */}
-        <Container className="mt--7" fluid>
+        {/* Page content */ 
+ /*       <Container className="mt--7" fluid>
           <Row>
             <div className="col">
               <Card className="shadow border-0">
@@ -118,5 +123,28 @@ class Maps extends React.Component {
     );
   }
 }
+*/
+
+class Maps extends React.Component {
+  state = {};
+  render() {
+    return (
+      <>
+        <Header />
+        {/* Page content */}
+        <Container className=" mt--5" fluid>
+          {/* Table */}
+          <div>
+            <h1>Viajes en Curso</h1>
+            <Viajes_curso/>
+            <h1>Historial de viajes</h1>
+            <Viajes/>
+           </div>
+        </Container>
+      </>
+    );
+  }
+}
+
 
 export default Maps;
