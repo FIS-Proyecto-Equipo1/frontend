@@ -108,21 +108,34 @@ class Vehiculos extends React.Component {
         });
     }
 
+    isInvalid(stringValue)
+    {
+        return stringValue === "" || stringValue === "--"
+    }
+
     addVehiculo(vehiculo){
-        this.setState(prevState => {
-            const vehiculos = prevState.vehiculos; //Cogemos los vehiculos existentes
-            if (! vehiculos.find(v => v.matricula === vehiculo.matricula)) { //Comprobamos que no añadamos uno existente
-                console.log("AddVehiculo: "+vehiculo);
-                VehiculosApi.postVehicle(vehiculo);
-                return ({vehiculos: [...prevState.vehiculos, vehiculo]});
-            }
-            else{
-            return({
-                //vehiculos: [...prevState.vehiculos, vehiculo]
-                errorInfo: "Vehicle already exists"
-                });
-            }
-        });
+        console.log(vehiculo.tipo);
+        if(this.isInvalid(vehiculo.tipo) || this.isInvalid(vehiculo.estado) || this.isInvalid(vehiculo.permiso)){
+            console.log("MAL");
+            return {
+                errorInfo: "Input de seleccion erroneo"
+            };
+        }else{
+            this.setState(prevState => {
+                const vehiculos = prevState.vehiculos; //Cogemos los vehiculos existentes
+                if (! vehiculos.find(v => v.matricula === vehiculo.matricula)) { //Comprobamos que no añadamos uno existente
+                    console.log("AddVehiculo: "+vehiculo);
+                    VehiculosApi.postVehicle(vehiculo);
+                    return ({vehiculos: [...prevState.vehiculos, vehiculo]});
+                }
+                else{
+                return({
+                    //vehiculos: [...prevState.vehiculos, vehiculo]
+                    errorInfo: "Vehicle already exists"
+                    });
+                }
+            });    
+        }
     }
 
     render(){

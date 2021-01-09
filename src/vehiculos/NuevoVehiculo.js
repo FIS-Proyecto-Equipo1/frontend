@@ -37,22 +37,22 @@ class NuevoVehiculo extends React.Component {
         return(
             <tr>
                 <td><input className="form-control" name="matricula" value = {this.state.matricula} onChange={this.changeVehiculo}/></td>
-                <td><select name="estado" id="estado" value={this.state.estado} onChange={this.changeVehiculo}>
-                    <option value = "">--</option>
+                <td><select className="browser-default custom-select" name="estado" id="estado" value={this.state.estado} onChange={this.changeVehiculo}>
+                    <option value = "--">--</option>
                     <option value = "TRAYECTO">TRAYECTO</option>
                     <option value = "DISPONIBLE" >DISPONIBLE</option>
                     <option value = "NODISPONIBLE" >NODISPONIBLE</option>
                     <option value = "RESERVADO" >RESERVADO</option>
                     </select></td>
-                <td><select name="permiso" id="permiso" value={this.state.permiso} onChange={this.changeVehiculo}>
-                    <option value = "">--</option>
+                <td><select className="browser-default custom-select" name="permiso" id="permiso" value={this.state.permiso} onChange={this.changeVehiculo}>
+                    <option value = "--">--</option>
                     <option value = "AB">AB</option>
                     <option value = "B" >B</option>
                     <option value = "NO" >NO</option>
                     </select></td>
                 <td><input class="form-control inputstl"  name="localizacion" value = {this.state.localizacion} onChange={this.changeVehiculo}/></td>
-                <td><select name="tipo" id="tipo" value={this.state.tipo} onChange={this.changeVehiculo}>
-                    <option value = "">--</option>
+                <td><select className="browser-default custom-select" name="tipo" id="tipo" value={this.state.tipo} onChange={this.changeVehiculo}>
+                    <option value = "--">--</option>
                     <option value = "Moto">Moto</option>
                     <option value = "Coche" >Coche</option>
                     <option value = "Patin" >Patin</option>
