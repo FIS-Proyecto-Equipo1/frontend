@@ -8,13 +8,13 @@ function EditBill(props) {
     return (
         <tr>
         
-            <td><text className="form-control" name="billNumber" value={props.bill.billNumber}/></td>
-            <td><text className="form-control" name="name" value={props.bill.name}/></td>
-            <td><text className="form-control" name="surnames" value={props.bill.surnames}/></td>
-            <td><text className="form-control" name="vehicle" value={props.bill.vehicle}/></td>
-            <td><text className="form-control" name="duration" value={props.bill.duration}/></td>
-            <td><text className="form-control" name="rate" value={props.bill.rate}/></td>
-            <td><text className="form-control" name="amount" value={props.bill.amount}/></td>
+            <td>{props.bill.billNumber}</td>    
+            <td>{props.bill.name}</td>            
+            <td>{props.bill.surnames}</td>
+            <td>{props.bill.vehicle}</td>
+            <td>{props.bill.duration}</td>
+            <td>{props.bill.rate}</td>
+            <td>{props.bill.amount}</td>
             <td>
             <select className="form-control" name="billStatus" value={props.bill.billStatus} onChange={handleChange}>
                 <option value="Pagado">Pagado</option> 

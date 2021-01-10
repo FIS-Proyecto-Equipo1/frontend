@@ -34,7 +34,7 @@ class Bills extends React.Component {
 
     handleEdit(bill) {
         this.setState(prevState => ({
-             isEditing: {...prevState.isEditing, [bill.billStatus]: bill}
+             isEditing: {...prevState.isEditing, [bill.billNumber]: bill}
         }));
     }
 
@@ -54,31 +54,31 @@ class Bills extends React.Component {
         })
     }
 
-    handleChange(billStatus, bill) {
+    handleChange(billNumber, bill) {
         this.setState(prevState => ({
-            isEditing: {...prevState.isEditing, [billStatus]: bill}
+            isEditing: {...prevState.isEditing, [billNumber]: bill}
         }))
     }
 
-    handleSave(billStatus, bill) {
+    handleSave(billNumber, bill) {
         this.setState(prevState => {
             const isEditing = Object.assign({}, prevState.isEditing);
-            delete isEditing[billStatus];
+            delete isEditing[billNumber];
 
-            if (billStatus !== bill.billStatus) {
-                const bills = prevState.bills;
-                const pos = bills.findIndex(c => c.billStatus !== bill.billStatus);
-                BillsApi.updateBill(bill);
+            const bills = prevState.bills;
+            const pos = bills.findIndex(c => c.billStatus !== bill.billStatus && c.billNumber === bill.billNumber);
+            BillsApi.updateBill(bill);
+            if (pos !== -1){
                 return {
                     bills: [...bills.slice(0,pos), Object.assign({}, bill), ...bills.slice(pos+1)],
                     isEditing: isEditing
                 }
             }
-
-            return {
-                errorInfo: "You only can edit status",
+            else{
+                return {
+                    errorInfo: "No ha cambiado el estado",
+                }
             }
-
         });
     }
 
@@ -112,7 +112,7 @@ class Bills extends React.Component {
                 }
                 else{
                 return({
-                    errorInfo: "Bill already exists"
+                    errorInfo: 'Ya existe la factura'
                     });
                 }
             });    
@@ -141,15 +141,15 @@ class Bills extends React.Component {
                     </thead>
                     <NewBill onAddBill={this.addBill}/>
                     {this.state.bills.map((bill) => 
-                ! this.state.isEditing[bill.billStatus] ?
-                <Bill key={bill.billStatus} bill={bill} 
+                ! this.state.isEditing[bill.billNumber] ?
+                <Bill key={bill.billNumber} bill={bill} 
                     onEdit={this.handleEdit}
                     onDelete={this.handleDelete}/>
                 :
-                <EditBill key={bill.billStatus} bill={this.state.isEditing[bill.billStatus]} 
-                    onCancel={this.handleCancel.bind(this, bill.billStatus)}
-                    onChange={this.handleChange.bind(this, bill.billStatus)}
-                    onSave={this.handleSave.bind(this, bill.billStatus)}/>
+                <EditBill key={bill.billNumber} bill={this.state.isEditing[bill.billNumber]} 
+                    onCancel={this.handleCancel.bind(this, bill.billNumber)}
+                    onChange={this.handleChange.bind(this, bill.billNumber)}
+                    onSave={this.handleSave.bind(this, bill.billNumber)}/>
             )}
                 </table>
             </div>
