@@ -94,6 +94,18 @@ class Bills extends React.Component {
         return stringValue === "" || stringValue === "--"
     }
 
+    invalidBillNumber(stringValue)
+    {
+        const BILL_NUMBER_REG_EX=new RegExp('[A-Z]{2}[0-9]{5}'); 
+        return stringValue.match(BILL_NUMBER_REG_EX)
+    }
+
+    invalidDuration(stringValue)
+    {
+        const DURATION_STRINGR_REG_EX=new RegExp('[0-9]{2}:[0-5][0-9]:[0-5][0-9]'); 
+        return stringValue.match(DURATION_STRINGR_REG_EX)
+    }
+
     addBill(bill) {
         if(this.isInvalid(bill.billStatus) 
             || this.isInvalid(bill.vehicle)
@@ -105,10 +117,20 @@ class Bills extends React.Component {
                 };
          }else{ this.setState(prevState => {
                 const bills = prevState.bills; 
-                if (! bills.find(v => v.billNumber === bill.billNumber)) { 
-                    console.log("addBill: "+bill);
+                if (! bills.find(v => v.billNumber === bill.billNumber || ! this.invalidBillNumber(bill.billNumber) || ! this.invalidDuration(bill.duration))) { 
+                    console.log("addBill: " + bill);
                     BillsApi.postBill(bill);
                     return ({bills: [...prevState.bills, bill]});
+                }
+                else if (this.invalidBillNumber(bill.billNumber) === null){
+                    return({
+                        errorInfo: "Nº factura debe tener 2 letras y 5 números"
+                        });
+                }
+                else if (this.invalidDuration(bill.duration) === null){
+                    return({
+                        errorInfo: "La druación debe venir en formato HH:MM:SS"
+                        });
                 }
                 else{
                 return({
