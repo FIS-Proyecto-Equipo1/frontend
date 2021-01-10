@@ -31,13 +31,13 @@ class LoginApi {
                 "username": document.getElementById("username").value,
                 "password": document.getElementById("password").value
             }),
-        }).then(response => {
-            console.log(response);
-            return response.json();
+        })
+        .then((response) => response.json())
+        .then((responseData) => {
+            console.log(responseData);
+            window.localStorage.setItem("token",responseData.token);
         });
     }
-
-
 }
 
 export default LoginApi;
