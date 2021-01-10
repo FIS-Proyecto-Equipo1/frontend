@@ -1,4 +1,5 @@
 import React from 'react';
+ 
 
 function EditBill(props) {
     const handleChange = event => {
@@ -14,7 +15,7 @@ function EditBill(props) {
             <td>{props.bill.vehicle}</td>
             <td>{props.bill.duration}</td>
             <td>{props.bill.rate}</td>
-            <td>{props.bill.amount}</td>
+            <td>{parseFloat(Math.round(props.bill.amount)/100).toFixed(2) + "€"}</td>
             <td>
             <select className="form-control" name="billStatus" value={props.bill.billStatus} onChange={handleChange}>
                 <option value="Pagado">Pagado</option> 
