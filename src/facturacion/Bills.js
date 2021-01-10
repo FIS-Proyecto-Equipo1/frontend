@@ -42,7 +42,7 @@ class Bills extends React.Component {
         this.setState(prevState => ({
             bills: prevState.bills.filter((b) => b.billNumber !== bill.billNumber)
         }))
-        BillsApi.deleteBill(bill);
+        BillsApi.deleteBill(bill.billNumber);
     }
     handleCancel(billStatus, bill) {
         this.setState(prevState => {
