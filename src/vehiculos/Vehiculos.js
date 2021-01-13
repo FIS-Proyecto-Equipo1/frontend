@@ -25,7 +25,11 @@ class Vehiculos extends React.Component {
     }
 
     componentDidMount() {
-        axios.get(VehiculosApi.API_BASE_URL + "/vehicles")
+        axios.get(VehiculosApi.API_BASE_URL + "/vehicles", {
+            headers: {
+                'Authorization':'Bearer '+window.localStorage.getItem("token")
+            }
+        })
             .then(
                 result => {
                     const vehiculos = result.data;
@@ -45,7 +49,6 @@ class Vehiculos extends React.Component {
 
     handleDelete(vehiculo){
         this.deleteVehiculo(vehiculo);
-        VehiculosApi.deleteVehicle(vehiculo);
     }
 
     handleCloseError(){
@@ -94,8 +97,8 @@ class Vehiculos extends React.Component {
     deleteVehiculo(vehiculo){
         this.setState(prevState => {
         const vehiculos = prevState.vehiculos; //Cogemos los vehiculos existentes
-            console.log("Deleted: "+vehiculo);
-            VehiculosApi.deleteVehicle(vehiculo);
+        console.log("Deleted: "+vehiculo);
+        VehiculosApi.deleteVehicle(vehiculo);
             return({
                 vehiculos: prevState.vehiculos.filter((v) => v.matricula !== vehiculo.matricula)
             });
@@ -111,7 +114,6 @@ class Vehiculos extends React.Component {
         this.setState(prevState => {
         console.log(vehiculo.tipo);
         if(this.isInvalid(vehiculo.tipo) || this.isInvalid(vehiculo.estado) || this.isInvalid(vehiculo.permiso)){
-            console.log("MAL");
             return ({
                 errorInfo: "Input de seleccion erroneo",
                 successInfo:null
@@ -162,7 +164,7 @@ class Vehiculos extends React.Component {
                         ! this.state.isEditing[vehiculo.matricula] ?
                         <Vehiculo key={vehiculo.matricula} vehiculo={vehiculo} 
                         onEdit={this.handleEdit}
-                        onDelete={this.handleDelete.bind(this,vehiculo.matricula)}/>
+                        onDelete={this.handleDelete.bind(this,vehiculo)}/>
                         :
                         <EditVehiculo key={vehiculo.matricula} vehiculo={this.state.isEditing[vehiculo.matricula]} 
                             onCancel={this.handleCancel.bind(this,vehiculo.matricula)}
