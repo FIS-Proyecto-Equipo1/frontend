@@ -7,7 +7,10 @@ class VehiculosApi {
     }
 
     static getAllVehicles(){
-        const headers = this.requestHeaders();
+        const token = window.localStorage.getItem("token")
+        const headers = {
+            'Authorization':'Bearer '+token
+        }
         const request = new Request(VehiculosApi.API_BASE_URL + "/vehicles", {
             method: 'GET',
             headers: headers

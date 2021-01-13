@@ -1,6 +1,7 @@
 import React from 'react';
 import Vehiculo from './Vehiculo.js';
 import Alert from './Alert.js';
+import AlertS from './AlertS.js';
 import NuevoVehiculo from './NuevoVehiculo.js'
 import EditVehiculo from './EditVehiculo.js'
 
@@ -13,6 +14,7 @@ class Vehiculos extends React.Component {
         super(props);
         this.state = { 
             errorInfo: null,
+            successInfo: null,
             vehiculos: [],
             isEditing: {}
         };
@@ -97,6 +99,7 @@ class Vehiculos extends React.Component {
             if (vehiculos.find(v => v.matricula === vehiculo.matricula)) { //Comprobamos que borramos uno existente
                 console.log("Deleted: "+vehiculo);
                 VehiculosApi.deleteVehicle(vehiculo);
+                
                 return({
                     vehiculos: [...prevState.vehiculos] //creamos nuevo array con contenido anterior + nuevo
                 });
@@ -114,34 +117,43 @@ class Vehiculos extends React.Component {
     }
 
     addVehiculo(vehiculo){
+        this.setState(prevState => {
         console.log(vehiculo.tipo);
         if(this.isInvalid(vehiculo.tipo) || this.isInvalid(vehiculo.estado) || this.isInvalid(vehiculo.permiso)){
             console.log("MAL");
-            return {
-                errorInfo: "Input de seleccion erroneo"
-            };
+            return ({
+                errorInfo: "Input de seleccion erroneo",
+                successInfo:null
+            });
         }else{
-            this.setState(prevState => {
                 const vehiculos = prevState.vehiculos; //Cogemos los vehiculos existentes
                 if (! vehiculos.find(v => v.matricula === vehiculo.matricula)) { //Comprobamos que no añadamos uno existente
                     console.log("AddVehiculo: "+vehiculo);
                     VehiculosApi.postVehicle(vehiculo);
-                    return ({vehiculos: [...prevState.vehiculos, vehiculo]});
+                    return ({
+                        vehiculos: [...prevState.vehiculos, vehiculo],
+                        successInfo: "Vehicles added succesfully",
+                        errorInfo:null
+                        // errorInfo: "Vehicle added succesfully"
+                    });
                 }
                 else{
                 return({
                     //vehiculos: [...prevState.vehiculos, vehiculo]
-                    errorInfo: "Vehicle already exists"
+                    errorInfo: "Vehicle already exists",
+                    successInfo:null
                     });
                 }
-            });    
         }
+    });
     }
 
     render(){
         return (
             <div>
                 <Alert message={this.state.errorInfo} onClose={this.handleCloseError}/>
+                <AlertS message={this.state.successInfo} onClose={this.addVehiculo}/>
+
                 <table className="table">
                     <thead>
                         <tr>
