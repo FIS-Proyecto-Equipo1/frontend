@@ -26,7 +26,11 @@ class Vehiculos extends React.Component {
     }
 
     componentDidMount() {
-        axios.get(VehiculosApi.API_BASE_URL + "/vehicles")
+        axios.get(VehiculosApi.API_BASE_URL + "/vehicles", {
+            headers: {
+                'Authorization':'Bearer '+window.localStorage.getItem("token")
+            }
+        })
             .then(
                 result => {
                     const vehiculos = result.data;
@@ -46,7 +50,6 @@ class Vehiculos extends React.Component {
 
     handleDelete(vehiculo){
         this.deleteVehiculo(vehiculo);
-        VehiculosApi.deleteVehicle(vehiculo);
     }
 
     handleCloseError(){

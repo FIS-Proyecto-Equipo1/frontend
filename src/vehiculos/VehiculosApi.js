@@ -7,13 +7,9 @@ class VehiculosApi {
     }
 
     static getAllVehicles(){
-        const token = window.localStorage.getItem("token")
-        const headers = {
-            'Authorization':'Bearer '+token
-        }
         const request = new Request(VehiculosApi.API_BASE_URL + "/vehicles", {
             method: 'GET',
-            headers: headers
+            headers: this.requestHeaders()
         });
 
         return fetch(request).then(response => {
@@ -23,6 +19,7 @@ class VehiculosApi {
 
     static deleteVehicle(matricula){
         const headers = {
+            'Authorization':'Bearer '+window.localStorage.getItem("token"),
             Accept: 'application/json',
             'Content-Type': 'application/json'
         };
@@ -36,6 +33,7 @@ class VehiculosApi {
     
     static postVehicle(vehiculo){
         const headers = {
+            'Authorization':'Bearer '+window.localStorage.getItem("token"),
             Accept: 'application/json',
             'Content-Type': 'application/json'
         };
@@ -56,6 +54,7 @@ class VehiculosApi {
     static updateVehicle(vehiculo){
         const headers = {
             // 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+            'Authorization':'Bearer '+window.localStorage.getItem("token"),
             Accept: 'application/json',
             'Content-Type': 'application/json'
         };
