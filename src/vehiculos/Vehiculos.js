@@ -20,6 +20,7 @@ class Vehiculos extends React.Component {
         };
         this.handleEdit = this.handleEdit.bind(this); //necesario para poder utilizar this
         this.handleCloseError = this.handleCloseError.bind(this);
+        this.handleCloseSuccess = this.handleCloseSuccess.bind(this);
         this.addVehiculo = this.addVehiculo.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
     }
@@ -53,6 +54,12 @@ class Vehiculos extends React.Component {
     handleCloseError(){
         this.setState({
             errorInfo: null //asegurarse de que el estado es inmutable
+        });
+    }
+    
+    handleCloseSuccess(){
+        this.setState({
+            successInfo:null //asegurarse de que el estado es inmutable
         });
     }
 
@@ -152,7 +159,7 @@ class Vehiculos extends React.Component {
         return (
             <div>
                 <Alert message={this.state.errorInfo} onClose={this.handleCloseError}/>
-                <AlertS message={this.state.successInfo} onClose={this.addVehiculo}/>
+                <AlertS message={this.state.successInfo} onClose={this.handleCloseSuccess}/>
 
                 <table className="table">
                     <thead>
