@@ -20,6 +20,7 @@ class Vehiculos extends React.Component {
         };
         this.handleEdit = this.handleEdit.bind(this); //necesario para poder utilizar this
         this.handleCloseError = this.handleCloseError.bind(this);
+        this.handleCloseSuccess = this.handleCloseSuccess.bind(this);
         this.addVehiculo = this.addVehiculo.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
     }
@@ -54,6 +55,12 @@ class Vehiculos extends React.Component {
     handleCloseError(){
         this.setState({
             errorInfo: null //asegurarse de que el estado es inmutable
+        });
+    }
+    
+    handleCloseSuccess(){
+        this.setState({
+            successInfo:null //asegurarse de que el estado es inmutable
         });
     }
 
@@ -97,8 +104,8 @@ class Vehiculos extends React.Component {
     deleteVehiculo(vehiculo){
         this.setState(prevState => {
         const vehiculos = prevState.vehiculos; //Cogemos los vehiculos existentes
-        console.log("Deleted: "+vehiculo);
-        VehiculosApi.deleteVehicle(vehiculo);
+            console.log("Deleted: "+vehiculo);
+            VehiculosApi.deleteVehicle(vehiculo.matricula);
             return({
                 vehiculos: prevState.vehiculos.filter((v) => v.matricula !== vehiculo.matricula)
             });
@@ -112,7 +119,6 @@ class Vehiculos extends React.Component {
 
     addVehiculo(vehiculo){
         this.setState(prevState => {
-        console.log(vehiculo.tipo);
         if(this.isInvalid(vehiculo.tipo) || this.isInvalid(vehiculo.estado) || this.isInvalid(vehiculo.permiso)){
             return ({
                 errorInfo: "Input de seleccion erroneo",
@@ -145,7 +151,7 @@ class Vehiculos extends React.Component {
         return (
             <div>
                 <Alert message={this.state.errorInfo} onClose={this.handleCloseError}/>
-                <AlertS message={this.state.successInfo} onClose={this.addVehiculo}/>
+                <AlertS message={this.state.successInfo} onClose={this.handleCloseSuccess}/>
 
                 <table className="table">
                     <thead>
