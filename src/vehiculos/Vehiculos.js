@@ -1,6 +1,7 @@
 import React from 'react';
 import Vehiculo from './Vehiculo.js';
 import Alert from './Alert.js';
+import AlertS from './AlertS.js';
 import NuevoVehiculo from './NuevoVehiculo.js'
 import EditVehiculo from './EditVehiculo.js'
 
@@ -13,11 +14,13 @@ class Vehiculos extends React.Component {
         super(props);
         this.state = { 
             errorInfo: null,
+            successInfo: null,
             vehiculos: [],
             isEditing: {}
         };
         this.handleEdit = this.handleEdit.bind(this); //necesario para poder utilizar this
         this.handleCloseError = this.handleCloseError.bind(this);
+        this.handleCloseSuccess = this.handleCloseSuccess.bind(this);
         this.addVehiculo = this.addVehiculo.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
     }
@@ -42,15 +45,19 @@ class Vehiculos extends React.Component {
     }
 
     handleDelete(vehiculo){
-        this.setState(prevState => ({
-            vehiculos: prevState.vehiculos.filter((v) => v.matricula !== vehiculo.matricula)
-        }))
+        this.deleteVehiculo(vehiculo);
         VehiculosApi.deleteVehicle(vehiculo);
     }
 
     handleCloseError(){
         this.setState({
             errorInfo: null //asegurarse de que el estado es inmutable
+        });
+    }
+    
+    handleCloseSuccess(){
+        this.setState({
+            successInfo:null //asegurarse de que el estado es inmutable
         });
     }
 
@@ -93,17 +100,11 @@ class Vehiculos extends React.Component {
 
     deleteVehiculo(vehiculo){
         this.setState(prevState => {
-            const vehiculos = prevState.vehiculos; //Cogemos los vehiculos existentes
-            if (vehiculos.find(v => v.matricula === vehiculo.matricula)) { //Comprobamos que borramos uno existente
-                console.log("Deleted: "+vehiculo);
-                VehiculosApi.deleteVehicle(vehiculo);
-                return({
-                    vehiculos: [...prevState.vehiculos] //creamos nuevo array con contenido anterior + nuevo
-                });
-            }
+        const vehiculos = prevState.vehiculos; //Cogemos los vehiculos existentes
+            console.log("Deleted: "+vehiculo);
+            VehiculosApi.deleteVehicle(vehiculo.matricula);
             return({
-                //vehiculos: [...prevState.vehiculos, vehiculo]
-                errorInfo: "Vehicle does not exist"
+                vehiculos: prevState.vehiculos.filter((v) => v.matricula !== vehiculo.matricula)
             });
         });
     }
@@ -114,34 +115,41 @@ class Vehiculos extends React.Component {
     }
 
     addVehiculo(vehiculo){
-        console.log(vehiculo.tipo);
+        this.setState(prevState => {
         if(this.isInvalid(vehiculo.tipo) || this.isInvalid(vehiculo.estado) || this.isInvalid(vehiculo.permiso)){
-            console.log("MAL");
-            return {
-                errorInfo: "Input de seleccion erroneo"
-            };
+            return ({
+                errorInfo: "Input de seleccion erroneo",
+                successInfo:null
+            });
         }else{
-            this.setState(prevState => {
                 const vehiculos = prevState.vehiculos; //Cogemos los vehiculos existentes
                 if (! vehiculos.find(v => v.matricula === vehiculo.matricula)) { //Comprobamos que no añadamos uno existente
                     console.log("AddVehiculo: "+vehiculo);
                     VehiculosApi.postVehicle(vehiculo);
-                    return ({vehiculos: [...prevState.vehiculos, vehiculo]});
+                    return ({
+                        vehiculos: [...prevState.vehiculos, vehiculo],
+                        successInfo: "Vehicles added succesfully",
+                        errorInfo:null
+                        // errorInfo: "Vehicle added succesfully"
+                    });
                 }
                 else{
                 return({
                     //vehiculos: [...prevState.vehiculos, vehiculo]
-                    errorInfo: "Vehicle already exists"
+                    errorInfo: "Vehicle already exists",
+                    successInfo:null
                     });
                 }
-            });    
         }
+    });
     }
 
     render(){
         return (
             <div>
                 <Alert message={this.state.errorInfo} onClose={this.handleCloseError}/>
+                <AlertS message={this.state.successInfo} onClose={this.handleCloseSuccess}/>
+
                 <table className="table">
                     <thead>
                         <tr>
@@ -159,7 +167,7 @@ class Vehiculos extends React.Component {
                         ! this.state.isEditing[vehiculo.matricula] ?
                         <Vehiculo key={vehiculo.matricula} vehiculo={vehiculo} 
                         onEdit={this.handleEdit}
-                        onDelete={this.handleDelete.bind(this,vehiculo.matricula)}/>
+                        onDelete={this.handleDelete.bind(this,vehiculo)}/>
                         :
                         <EditVehiculo key={vehiculo.matricula} vehiculo={this.state.isEditing[vehiculo.matricula]} 
                             onCancel={this.handleCancel.bind(this,vehiculo.matricula)}
