@@ -44,9 +44,7 @@ class Vehiculos extends React.Component {
     }
 
     handleDelete(vehiculo){
-        this.setState(prevState => ({
-            vehiculos: prevState.vehiculos.filter((v) => v.matricula !== vehiculo.matricula)
-        }))
+        this.deleteVehiculo(vehiculo);
         VehiculosApi.deleteVehicle(vehiculo);
     }
 
@@ -95,18 +93,11 @@ class Vehiculos extends React.Component {
 
     deleteVehiculo(vehiculo){
         this.setState(prevState => {
-            const vehiculos = prevState.vehiculos; //Cogemos los vehiculos existentes
-            if (vehiculos.find(v => v.matricula === vehiculo.matricula)) { //Comprobamos que borramos uno existente
-                console.log("Deleted: "+vehiculo);
-                VehiculosApi.deleteVehicle(vehiculo);
-                
-                return({
-                    vehiculos: [...prevState.vehiculos] //creamos nuevo array con contenido anterior + nuevo
-                });
-            }
+        const vehiculos = prevState.vehiculos; //Cogemos los vehiculos existentes
+            console.log("Deleted: "+vehiculo);
+            VehiculosApi.deleteVehicle(vehiculo);
             return({
-                //vehiculos: [...prevState.vehiculos, vehiculo]
-                errorInfo: "Vehicle does not exist"
+                vehiculos: prevState.vehiculos.filter((v) => v.matricula !== vehiculo.matricula)
             });
         });
     }
