@@ -102,7 +102,7 @@ class Vehiculos extends React.Component {
         this.setState(prevState => {
         const vehiculos = prevState.vehiculos; //Cogemos los vehiculos existentes
             console.log("Deleted: "+vehiculo);
-            VehiculosApi.deleteVehicle(vehiculo);
+            VehiculosApi.deleteVehicle(vehiculo.matricula);
             return({
                 vehiculos: prevState.vehiculos.filter((v) => v.matricula !== vehiculo.matricula)
             });
