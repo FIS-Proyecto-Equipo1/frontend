@@ -21,10 +21,10 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 // reactstrap components
 
 import Reservas from "reservas/Reservas.js";
-import Reserva from "reservas/Reserva.js";
-import NuevaReserva from "reservas/NuevaReserva.js";
-import Alert from "reservas/Alert.js";
-import EditReserva from "reservas/EditReserva.js";
+// import Reserva from "reservas/Reserva.js";
+// import NuevaReserva from "reservas/NuevaReserva.js";
+// import Alert from "reservas/Alert.js";
+// import EditReserva from "reservas/EditReserva.js";
 
 
 import {

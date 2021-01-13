@@ -45,9 +45,9 @@ class NuevaReserva extends React.Component {
                     <option value = "Patin" >Patin</option>
                     <option value = "Bici" >Bici</option>
                 </select></td> */}
+                {/* <TextField required id="standard-required" label="Required" defaultValue="Hello World" />
                 <TextField required id="standard-required" label="Required" defaultValue="Hello World" />
-                <TextField required id="standard-required" label="Required" defaultValue="Hello World" />
-                <TextField required id="standard-required" label="Required" defaultValue="Hello World" />
+                <TextField required id="standard-required" label="Required" defaultValue="Hello World" /> */}
                 </select></td>
                 {/* <td><select className="browser-default custom-select" name="permiso" id="permiso" value={this.state.permiso} onChange={this.changeVehiculo}>
                     <option value = "--">--</option>
