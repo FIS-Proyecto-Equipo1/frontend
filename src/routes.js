@@ -22,6 +22,7 @@ import Register from "views/examples/Register.js";
 import Login from "views/examples/Login.js";
 import Tables from "views/examples/Tables.js";
 import Icons from "views/examples/Vehicles.js";
+import Reservas from "views/examples/Reservas.js";
 
 var routes = [
   {
@@ -43,6 +44,13 @@ var routes = [
     name: "Viajes",
     icon: "ni ni-pin-3 text-orange",
     component: Maps,
+    layout: "/admin"
+  },
+  {
+    path: "/reservas",
+    name: "Reservas",
+    icon: "fa fa-bookmark text-green",
+    component: Reservas,
     layout: "/admin"
   },
   {

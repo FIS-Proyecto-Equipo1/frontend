@@ -17,7 +17,7 @@
 */
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
 
 import "assets/plugins/nucleo/css/nucleo.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
@@ -29,7 +29,7 @@ import AuthLayout from "layouts/Auth.js";
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
-      <Route  render={props => <AuthLayout {...props} />} />
+      {/* <Route  render={props => <AuthLayout {...props} />} /> */}
       <Route  render={props => <AdminLayout {...props} />} />
       <Redirect from="/" to="/login" />
     </Switch>
