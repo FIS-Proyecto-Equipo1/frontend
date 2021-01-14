@@ -120,7 +120,7 @@ class Bills extends React.Component {
                 if (! bills.find(v => v.billNumber === bill.billNumber || ! this.invalidBillNumber(bill.billNumber) || ! this.invalidDuration(bill.duration))) { 
                     console.log("addBill: " + bill);
                     BillsApi.postBill(bill);
-                    return ({bills: [...prevState.bills, bill]});
+                    return ({bills: [...prevState.bills, bill], errorInfo: "!Factura creada correctamente"})
                 }
                 else if (this.invalidBillNumber(bill.billNumber) === null){
                     return({
