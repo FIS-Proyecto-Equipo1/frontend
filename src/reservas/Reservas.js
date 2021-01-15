@@ -43,7 +43,7 @@ class Reservas extends React.Component {
         this.setState(prevState => ({
             reservas: prevState.reservas.filter((res) => res.id_reservation !== reserva.id_reservation)
         }))
-        ReservasApi.deleteReserva(id_reservation);
+        ReservasApi.deleteReserva(reserva);
     }
 
     handleCloseError(){

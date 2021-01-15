@@ -22,6 +22,7 @@ import Register from "views/examples/Register.js";
 import Login from "views/examples/Login.js";
 import Tables from "views/examples/Tables.js";
 import Icons from "views/examples/Vehicles.js";
+import Reservas from "views/examples/Reservas.js";
 
 var routes = [
   {
@@ -46,6 +47,13 @@ var routes = [
     layout: "/admin"
   },
   {
+    path: "/reservas",
+    name: "Reservas",
+    icon: "fa fa-bookmark text-green",
+    component: Reservas,
+    layout: "/admin"
+  },
+  {
     path: "/user-profile",
     name: "User Profile",
     icon: "ni ni-single-02 text-yellow",
@@ -53,8 +61,8 @@ var routes = [
     layout: "/admin"
   },
   {
-    path: "/tables",
-    name: "Tables",
+    path: "/bills",
+    name: "Bills",
     icon: "ni ni-bullet-list-67 text-red",
     component: Tables,
     layout: "/admin"
