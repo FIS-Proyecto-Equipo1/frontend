@@ -2,6 +2,7 @@ import React from 'react';
 import Vehiculo from './Vehiculo.js';
 import Alert from './Alert.js';
 import AlertS from './AlertS.js';
+import Filter from './Filter.js';
 import NuevoVehiculo from './NuevoVehiculo.js'
 import EditVehiculo from './EditVehiculo.js'
 
@@ -23,10 +24,16 @@ class Vehiculos extends React.Component {
         this.handleCloseSuccess = this.handleCloseSuccess.bind(this);
         this.addVehiculo = this.addVehiculo.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
+        this.handleFilter = this.handleFilter.bind(this);
     }
 
-    componentDidMount() {
-        axios.get(VehiculosApi.API_BASE_URL + "/vehicles", {
+    componentDidMount(query) {
+        let filter= "";
+        if(query !== undefined)
+        {
+            filter = query;
+        }
+        axios.get(VehiculosApi.API_BASE_URL + "/vehicles" +filter, {
             headers: {
                 'Authorization':'Bearer '+window.localStorage.getItem("token")
             }
@@ -101,6 +108,26 @@ class Vehiculos extends React.Component {
         });
     }
 
+    isInvalid(stringValue)
+    {
+        return stringValue === "" || stringValue === "--"
+    }
+
+    handleFilter(query){
+        let auxString =""
+        if(query !== undefined)
+        {
+            auxString += "?";
+            if(!this.isInvalid(query.estado))
+                auxString += "estado=" +query.estado;
+            if(!this.isInvalid(query.permiso))
+                auxString += "&permiso=" +query.permiso;   
+            if(!this.isInvalid(query.tipo))
+                auxString += "&tipo=" +query.tipo;    
+        }
+        this.componentDidMount(auxString);
+    }
+
     deleteVehiculo(vehiculo){
         this.setState(prevState => {
         const vehiculos = prevState.vehiculos; //Cogemos los vehiculos existentes
@@ -110,11 +137,6 @@ class Vehiculos extends React.Component {
                 vehiculos: prevState.vehiculos.filter((v) => v.matricula !== vehiculo.matricula)
             });
         });
-    }
-
-    isInvalid(stringValue)
-    {
-        return stringValue === "" || stringValue === "--"
     }
 
     addVehiculo(vehiculo){
@@ -152,7 +174,7 @@ class Vehiculos extends React.Component {
             <div>
                 <Alert message={this.state.errorInfo} onClose={this.handleCloseError}/>
                 <AlertS message={this.state.successInfo} onClose={this.handleCloseSuccess}/>
-
+                <Filter onFilter={this.handleFilter}/>
                 <table className="table">
                     <thead>
                         <tr>
