@@ -1,7 +1,9 @@
 
 class ViajesApi{
+    //static API_BASE_URL = "https://urbanio.herokuapp.com/api/v1";
+
     //static API_BASE_URL = "https://microservice-travel.herokuapp.com/api/v1";
-    static API_BASE_URL = "https://urbanio.herokuapp.com/api/v1";
+    static API_BASE_URL = "http://localhost:4000/api/v1";
 
     static requestHeaders(){
         const headers = new Headers();
