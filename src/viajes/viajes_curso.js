@@ -44,7 +44,7 @@ class ViajesCurso extends React.Component {
             viajes_curso: prevState.viajes_curso.filter((c) => c.estado !== 'EN CURSO')
         }))
         this.state.viajes_curso.map((viaje_curso) =>
-        ViajesApi.EndTravel(viaje_curso._id))
+            ViajesApi.EndTravel(viaje_curso._id, this.state.runningTime))
     }
     /*handleFinalizarviaje(){
         this.state.viajes_curso.map(this.setState({estado: 'Finalizado'}))
@@ -57,7 +57,7 @@ class ViajesCurso extends React.Component {
           } else {
             const startTime = Date.now() - this.state.runningTime;
             this.timer = setInterval(() => {
-              this.setState({ runningTime: Date.now() - startTime });
+                this.setState({ runningTime: Date.now() - startTime });
             });
           }
           return { status: !state.status };

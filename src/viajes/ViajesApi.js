@@ -52,7 +52,7 @@ class ViajesApi{
         });
     }   
 
-    static EndTravel(_id) {
+    static EndTravel(_id, duracion) {
         const headers = this.requestHeaders();
         const request = new Request(ViajesApi.API_BASE_URL + "/travels/" + _id, {
             method: 'PATCH',
@@ -61,7 +61,10 @@ class ViajesApi{
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + this.token
                 },
-            body: JSON.stringify({'estado': 'Finalizado'})
+            body: JSON.stringify({
+                'estado': 'Finalizado',
+                'duracion': duracion
+            })
             //body: JSON.stringify(data)
         });
 

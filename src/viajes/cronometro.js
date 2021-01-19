@@ -4,10 +4,11 @@ import ReactStopwatch from 'react-stopwatch';
 function Cronometro(props) {
  
     const status = props.status;
-    const runningTime  = props.runningTime;
+    const formattedRunningTime = new Date(props.runningTime).toISOString().slice(11, -1);
+
     return (
       <div>
-        <p>Tiempo transcurrido {runningTime}ms</p>
+        <p>Tiempo transcurrido {formattedRunningTime}ms</p>
         <button className="btn btn-primary" onClick={()=> props.handleCronometro()}>{status ? 'Stop' : 'Start'}</button>
       </div>
     );
