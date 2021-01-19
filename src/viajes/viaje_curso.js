@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactStopwatch from 'react-stopwatch';
 
 
 function Viaje_curso(props) {

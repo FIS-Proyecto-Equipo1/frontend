@@ -4,7 +4,7 @@ import ViajesApi from './ViajesApi.js';
 import Cronometro from './cronometro.js'
 
 
-class Viajes_curso extends React.Component {
+class ViajesCurso extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -52,7 +52,7 @@ class Viajes_curso extends React.Component {
 
     handleCronometro(){
         this.setState(state => {
-          if (this.state.status==true) {
+          if (this.state.status===true) {
             clearInterval(this.timer);
           } else {
             const startTime = Date.now() - this.state.runningTime;
@@ -94,4 +94,4 @@ class Viajes_curso extends React.Component {
     }
 }
 
-export default Viajes_curso; 
+export default ViajesCurso; 
