@@ -10,6 +10,7 @@ class Viajes extends React.Component {
             errorInfo: null,
             viajes: []
         };
+        this.handleDelete = this.handleDelete.bind(this);
     }
 
     componentDidMount() {  //react va a llamar a este método cuando el componente se instancia
@@ -28,6 +29,13 @@ class Viajes extends React.Component {
             )
     }
 
+    handleDelete(viaje) {
+        this.setState(prevState => ({
+            viajes: prevState.viajes.filter((c) => c._id !== viaje._id)
+        }))
+        ViajesApi.DeleteTravel(viaje._id);
+    }
+
     render() {
         return(
             <div>
@@ -41,7 +49,7 @@ class Viajes extends React.Component {
                 </tr>
             </thead>
             {this.state.viajes.map((viaje) =>
-                <Viaje viaje={viaje}/>
+                <Viaje viaje={viaje} onDelete={this.handleDelete}/>
             )}
             </table>
             </div>

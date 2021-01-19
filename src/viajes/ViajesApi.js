@@ -1,9 +1,8 @@
 
 class ViajesApi{
-    //static API_BASE_URL = "https://urbanio.herokuapp.com/api/v1";
-
+    //static API_BASE_URL = "https://urbanio.herokuapp.com/api/v1"; //api_gateway
     //static API_BASE_URL = "https://microservice-travel.herokuapp.com/api/v1";
-    static API_BASE_URL = "http://localhost:4000/api/v1";
+    static API_BASE_URL = "http://localhost:4000/api/v1"; //local
 
     static requestHeaders(){
         const headers = new Headers();
@@ -71,6 +70,19 @@ class ViajesApi{
             return response.json();
         });
     }   
-}
 
+    static DeleteTravel(_id){
+        const headers = this.requestHeaders();
+        const request = new Request(ViajesApi.API_BASE_URL + "/travels/" + _id, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': 'Bearer ' + this.token
+                }
+        });
+
+        return fetch(request).then(response => {
+            return response.json();
+        });
+    }
+}
 export default ViajesApi;

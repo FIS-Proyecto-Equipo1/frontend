@@ -1,6 +1,7 @@
 import React from 'react';
 import Viaje_curso from './viaje_curso.js';
 import ViajesApi from './ViajesApi.js';
+import Cronometro from './cronometro.js'
 
 
 class Viajes_curso extends React.Component {
@@ -8,9 +9,12 @@ class Viajes_curso extends React.Component {
         super(props);
         this.state = {
             errorInfo: null,
-            viajes_curso: []
+            viajes_curso: [],
+            status: false,
+            runningTime: 0
         };
         this.handleFinalizarviaje = this.handleFinalizarviaje.bind(this);
+        this.handleCronometro= this.handleCronometro.bind(this);
     }
 
     componentDidMount() {  //react va a llamar a este método cuando el componente se instancia
@@ -46,6 +50,21 @@ class Viajes_curso extends React.Component {
         this.state.viajes_curso.map(this.setState({estado: 'Finalizado'}))
     }*/
 
+    handleCronometro(){
+        this.setState(state => {
+          if (this.state.status==true) {
+            clearInterval(this.timer);
+          } else {
+            const startTime = Date.now() - this.state.runningTime;
+            this.timer = setInterval(() => {
+              this.setState({ runningTime: Date.now() - startTime });
+            });
+          }
+          return { status: !state.status };
+        });
+      };
+
+
     render() {
         return(
             <div>
@@ -56,7 +75,6 @@ class Viajes_curso extends React.Component {
                     <th>id_vehiculo</th>
                     <th>estado</th>
                     <th>duracion</th>
-
                 </tr>
             </thead>
             {this.state.viajes_curso.map((viaje_curso) =>
@@ -66,6 +84,10 @@ class Viajes_curso extends React.Component {
                 FinalizarViaje={this.handleFinalizarviaje}/>
             )}
             </table>
+                <Cronometro 
+                status={this.state.status} 
+                runningTime={this.state.runningTime} 
+                handleCronometro={this.handleCronometro}/>
             </div>
 
         );

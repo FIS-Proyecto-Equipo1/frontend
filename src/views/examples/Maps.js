@@ -20,6 +20,7 @@ import Header from "components/Headers/Header.js";
 import { Card, Container, Row } from "reactstrap";
 import Viajes from "viajes/viajes.js";
 import Viajes_curso from "viajes/viajes_curso.js";
+import cronometro from 'viajes/cronometro.js';
 
 /*// react plugin used to create google maps
 import {
@@ -124,6 +125,10 @@ const MapWrapper = withScriptjs(
   }
 }
 */
+import ReactStopwatch from 'react-stopwatch';
+
+
+
 
 class Maps extends React.Component {
   state = {};
@@ -137,6 +142,7 @@ class Maps extends React.Component {
           <div>
             <h1>Viajes en Curso</h1>
             <Viajes_curso/>
+            <cronometro/>
             <h1>Historial de viajes</h1>
             <Viajes/>
            </div>
