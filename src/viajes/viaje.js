@@ -8,7 +8,7 @@ function Viaje(props) {
         <td>{props.viaje.estado}</td>
         <td>{props.viaje.duracion}</td>
         <td>
-            <button className="btn btn-primary" onClick={() => props.onDelete(props.viaje)}>Delete</button>
+            <button className="btn btn-primary" onClick={() => props.onDelete(props.viaje)}>Borrar</button>
         </td>
     </tr>
     );
