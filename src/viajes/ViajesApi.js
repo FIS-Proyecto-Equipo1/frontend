@@ -1,7 +1,8 @@
 
 class ViajesApi{
+    //static API_BASE_URL = "https://urbanio.herokuapp.com/api/v1"; //api_gateway
     //static API_BASE_URL = "https://microservice-travel.herokuapp.com/api/v1";
-    static API_BASE_URL = "https://urbanio.herokuapp.com/api/v1";
+    static API_BASE_URL = "http://localhost:4000/api/v1"; //local
 
     static requestHeaders(){
         const headers = new Headers();
@@ -51,8 +52,7 @@ class ViajesApi{
         });
     }   
 
-    static EndTravel(_id) {
-        //const data = {'estado': 'Finalizado'}
+    static EndTravel(_id, duracion) {
         const headers = this.requestHeaders();
         const request = new Request(ViajesApi.API_BASE_URL + "/travels/" + _id, {
             method: 'PATCH',
@@ -61,7 +61,10 @@ class ViajesApi{
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + this.token
                 },
-            body: JSON.stringify({'estado': 'Finalizado'})
+            body: JSON.stringify({
+                'estado': 'Finalizado',
+                'duracion': duracion
+            })
             //body: JSON.stringify(data)
         });
 
@@ -69,6 +72,37 @@ class ViajesApi{
             return response.json();
         });
     }   
-}
 
+    static UpdateTravelDuration(_id, duracion) {
+        const headers = this.requestHeaders();
+        const request = new Request(ViajesApi.API_BASE_URL + "/travels/" + _id, {
+            method: 'PATCH',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + this.token
+                },
+            body: JSON.stringify({'duracion': duracion})
+            //body: JSON.stringify(data)
+        });
+
+        return fetch(request).then(response => {
+            return response.json();
+        });
+    } 
+
+    static DeleteTravel(_id){
+        const headers = this.requestHeaders();
+        const request = new Request(ViajesApi.API_BASE_URL + "/travels/" + _id, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': 'Bearer ' + this.token
+                }
+        });
+
+        return fetch(request).then(response => {
+            return response.json();
+        });
+    }
+}
 export default ViajesApi;
