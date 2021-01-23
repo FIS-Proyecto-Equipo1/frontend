@@ -19,7 +19,7 @@ import React from "react";
 import AdminLayout from "layouts/Admin.js";
 import UserLayout from "layouts/User.js";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Route, Redirect, Switch, withRouter } from "react-router-dom";
+import { BrowserRouter, Link, Route, Redirect, Switch, withRouter } from "react-router-dom";
 
 import LoginApi from "../../login/LoginApi.js";
 
@@ -41,6 +41,24 @@ import {
 
 
 class Login extends React.Component {
+
+  handleClick = () => {
+    window.localStorage.removeItem("rol");
+    window.localStorage.removeItem("token");
+    LoginApi.postUser().then((response) => {
+      var rol = window.localStorage.getItem("rol");
+      if(rol == 'ADMIN'){
+        this.props.history.push("/admin/index");
+      }else if(rol == 'USER'){
+        this.props.history.push("/user/index");
+      }else{
+        console.log("Try again!");
+        window.alert("Try again!");
+      }
+    })
+
+  }
+
   render() {
     return (
       <>
@@ -106,29 +124,7 @@ class Login extends React.Component {
                   </label>
                 </div>
                 <div className="text-center">
-                  <Button onClick={() => { LoginApi.postUser()
-                  .then((response) => {
-                    var rol = window.localStorage.getItem("rol");
-                    if(rol == 'admin'){
-                      ReactDOM.render(
-                      <BrowserRouter>     
-                        <Route path='/admin' render={props => <AdminLayout {...props} />} />
-                      </BrowserRouter> 
-                      );
-                    }else{
-                      ReactDOM.render( 
-                        <BrowserRouter>     
-                          <Route path='/user' render={props => <UserLayout {...props} />} />
-                        </BrowserRouter>
-                        );
-                    }
-                  });
-                  // .then((responseData) => {
-                  //   console.log(responseData);
-                  //   // if()
-                  //   // ReactDOM.render()
-                  // });
-                  }} className="my-4" color="primary" type="button">
+                  <Button onClick={this.handleClick} className="my-4" color="primary" type="button">
                     Sign in
                   </Button>
                 </div>
