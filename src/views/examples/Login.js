@@ -47,9 +47,10 @@ class Login extends React.Component {
     window.localStorage.removeItem("token");
     LoginApi.postUser().then((response) => {
       var rol = window.localStorage.getItem("rol");
-      if(rol == 'ADMIN'){
+      console.log(rol);
+      if(rol === 'ADMIN'){
         this.props.history.push("/admin/index");
-      }else if(rol == 'USER'){
+      }else if(rol === 'USER'){
         this.props.history.push("/user/index");
       }else{
         console.log("Try again!");
