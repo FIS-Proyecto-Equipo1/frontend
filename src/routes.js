@@ -36,8 +36,15 @@ var routes = [
     path: "/vehicles",
     name: "Vehicles",
     icon: "fa fa-bicycle text-blue",
-    component: Icons,
+    component: Vehicles,
     layout: "/admin"
+  },
+  {
+    path: "/vehicles",
+    name: "Vehicles4users",
+    icon: "fa fa-bicycle text-blue",
+    component: Vehicles4Users,
+    layout: "/user"
   },
   {
     path: "/viajes",

@@ -50,7 +50,7 @@ class Vehicles extends React.Component {
           {/* Table */}
           <div>
             <h1>Vehículos</h1>
-            <Vehiculos/>
+            <Vehiculos_for_users/>
           </div>
         </Container>
       </>
