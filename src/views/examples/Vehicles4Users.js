@@ -20,11 +20,7 @@ import React from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 // reactstrap components
 
-import Vehiculos from "vehiculos/Vehiculos.js";
-import Vehiculo from "vehiculos/Vehiculo.js";
-import NuevoVehiculo from "vehiculos/NuevoVehiculo.js";
-import Alert from "vehiculos/Alert.js";
-import EditVehiculo from "vehiculos/EditVehiculo.js";
+import Vehiculos from "vehiculos/Vehiculos_for_users.js";
 
 
 import {
@@ -39,7 +35,7 @@ import {
 // core components
 import Header from "components/Headers/Header.js";
 
-class Vehicles extends React.Component {
+class Vehicles4Users extends React.Component {
   state = {};
   render() {
     return (
@@ -58,4 +54,4 @@ class Vehicles extends React.Component {
   }
 }
 
-export default Vehicles;
+export default Vehicles4Users;
