@@ -17,6 +17,13 @@ var routesUser = [
         icon: "fa fa-bicycle text-blue",
         component: Vehicles,
         layout: "/user"
+      },
+      {
+        path: "/index",
+        name: "Dashboard",
+        icon: "ni ni-tv-2 text-primary",
+        component: Index,
+        layout: "/user"
       }
 
 ];
