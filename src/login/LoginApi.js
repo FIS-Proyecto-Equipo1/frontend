@@ -41,6 +41,7 @@ class LoginApi {
         .then((responseData) => {
             console.log(responseData);
             window.localStorage.setItem("token",responseData.token);
+            window.localStorage.setItem("rol",responseData.rol);
         });
     }
 }
