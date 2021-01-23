@@ -17,11 +17,11 @@
 */
 import Index from "views/Index.js";
 import Profile from "views/examples/Profile.js";
-import Maps from "views/examples/Maps.js";
+import ViajesAdmin from "views/examples/ViajesAdmin.js";
 import Register from "views/examples/Register.js";
 import Login from "views/examples/Login.js";
 import Tables from "views/examples/Tables.js";
-import Icons from "views/examples/Vehicles.js";
+import Vehicles from "views/examples/Vehicles.js";
 import Reservas from "views/examples/Reservas.js";
 
 var routes = [
@@ -36,14 +36,14 @@ var routes = [
     path: "/vehicles",
     name: "Vehicles",
     icon: "fa fa-bicycle text-blue",
-    component: Icons,
+    component: Vehicles,
     layout: "/admin"
   },
   {
-    path: "/viajes",
-    name: "Viajes",
+    path: "/viajesadmin",
+    name: "ViajesAdmin",
     icon: "ni ni-pin-3 text-orange",
-    component: Maps,
+    component: ViajesAdmin,
     layout: "/admin"
   },
   {
@@ -73,6 +73,6 @@ var routes = [
     icon: "ni ni-key-25 text-info",
     component: Login,
     layout: "/auth"
-  },
+  }
 ];
 export default routes;

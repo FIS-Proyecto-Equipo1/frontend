@@ -16,30 +16,12 @@
 
 */
 import React from "react";
-// react component that copies the given text inside your clipboard
-import { CopyToClipboard } from "react-copy-to-clipboard";
-// reactstrap components
-
-import Vehiculos from "vehiculos/Vehiculos.js";
-import Vehiculo from "vehiculos/Vehiculo.js";
-import NuevoVehiculo from "vehiculos/NuevoVehiculo.js";
-import Alert from "vehiculos/Alert.js";
-import EditVehiculo from "vehiculos/EditVehiculo.js";
-
-
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  Container,
-  Row,
-  Col,
-  UncontrolledTooltip
-} from "reactstrap";
-// core components
 import Header from "components/Headers/Header.js";
+import { Card, Container, Row } from "reactstrap";
+import Viajes from "viajes/viajes.js";
+import ViajesCurso from "viajes/viajes_curso.js";
 
-class Vehicles extends React.Component {
+class ViajesAdmin extends React.Component {
   state = {};
   render() {
     return (
@@ -49,13 +31,15 @@ class Vehicles extends React.Component {
         <Container className=" mt--5" fluid>
           {/* Table */}
           <div>
-            <h1>Tus vehículos</h1>
-            <Vehiculos/>
-          </div>
+            <h1>Viajes en Curso</h1>
+            <ViajesCurso/>
+            <h1 >VIAJES ADMIN</h1>
+            <Viajes/>
+           </div>
         </Container>
       </>
     );
   }
 }
 
-export default Vehicles;
+export default ViajesAdmin;
