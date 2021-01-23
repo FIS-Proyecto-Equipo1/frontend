@@ -16,7 +16,10 @@
 
 */
 import React from "react";
-
+import AdminLayout from "layouts/Admin.js";
+import UserLayout from "layouts/User.js";
+import ReactDOM from "react-dom";
+import { BrowserRouter, Route, Redirect, Switch, withRouter } from "react-router-dom";
 
 import LoginApi from "../../login/LoginApi.js";
 
@@ -104,12 +107,27 @@ class Login extends React.Component {
                 </div>
                 <div className="text-center">
                   <Button onClick={() => { LoginApi.postUser()
-                  .then((response) => response.json())
-                  .then((responseData) => {
-                    console.log(responseData);
-                    // if()
-                    // ReactDOM.render()
+                  .then((response) => {
+                    var rol = window.localStorage.getItem("rol");
+                    if(rol == 'admin'){
+                      ReactDOM.render(
+                      <BrowserRouter>     
+                        <Route path='/admin' render={props => <AdminLayout {...props} />} />
+                      </BrowserRouter> 
+                      );
+                    }else{
+                      ReactDOM.render( 
+                        <BrowserRouter>     
+                          <Route path='/user' render={props => <UserLayout {...props} />} />
+                        </BrowserRouter>
+                        );
+                    }
                   });
+                  // .then((responseData) => {
+                  //   console.log(responseData);
+                  //   // if()
+                  //   // ReactDOM.render()
+                  // });
                   }} className="my-4" color="primary" type="button">
                     Sign in
                   </Button>

@@ -89,4 +89,4 @@ class User extends React.Component {
   }
 }
 
-export default Admin;
+export default User;
