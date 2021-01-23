@@ -17,7 +17,7 @@
 */
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Redirect, Switch, withRouter } from "react-router-dom";
 
 import "assets/plugins/nucleo/css/nucleo.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
@@ -29,9 +29,22 @@ import AuthLayout from "layouts/Auth.js";
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
-      {/* <Route  render={props => <AuthLayout {...props} />} /> */}
-      <Route  render={props => <AdminLayout {...props} />} />
-      <Redirect from="/" to="/login" />
+      {/* <Route render={props => <AuthLayout {...props} />} /> */}
+      <Route path='/auth' render={props => <AuthLayout {...props} />} />
+      {/* <Route exact path="/" render={() => { Añadir este planteamiento
+          if (Auth.isUserAuthenticated()) { 
+            (<DashboardPage)/>)
+          } else {
+            (<HomePage/>)
+          }
+        }} /> */}
+      <Route path='/admin' render={props => <AdminLayout {...props} />} />
+      {/* <Route path="/logout" render={() => {
+          Auth.deauthenticateUser();
+          return <Redirect to={{ pathname: "/login" }} />;
+          }}
+      /> */}
+      <Redirect from="/" to="/auth" />
     </Switch>
   </BrowserRouter>,
   document.getElementById("root")
