@@ -103,9 +103,14 @@ class Login extends React.Component {
                   </label>
                 </div>
                 <div className="text-center">
-                  <Button onClick={() => { LoginApi.postUser().then(){
-                    window.location
-                  } }} className="my-4" color="primary" type="button">
+                  <Button onClick={() => { LoginApi.postUser()
+                  .then((response) => response.json())
+                  .then((responseData) => {
+                    console.log(responseData);
+                    // if()
+                    // ReactDOM.render()
+                  });
+                  }} className="my-4" color="primary" type="button">
                     Sign in
                   </Button>
                 </div>

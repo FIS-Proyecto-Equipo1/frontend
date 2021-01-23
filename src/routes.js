@@ -75,11 +75,53 @@ var routes = [
     layout: "/auth"
   },
   {
+    path: "/index",
+    name: "Dashboard",
+    icon: "ni ni-tv-2 text-primary",
+    component: Index,
+    layout: "/user"
+  },
+  {
+    path: "/vehicles",
+    name: "Vehicles",
+    icon: "fa fa-bicycle text-blue",
+    component: Icons,
+    layout: "/user"
+  },
+  {
+    path: "/viajes",
+    name: "Viajes",
+    icon: "ni ni-pin-3 text-orange",
+    component: Maps,
+    layout: "/user"
+  },
+  {
+    path: "/reservas",
+    name: "Reservas",
+    icon: "fa fa-bookmark text-green",
+    component: Reservas,
+    layout: "/user"
+  },
+  {
+    path: "/user-profile",
+    name: "User Profile",
+    icon: "ni ni-single-02 text-yellow",
+    component: Profile,
+    layout: "/user"
+  },
+  {
+    path: "/bills",
+    name: "Bills",
+    icon: "ni ni-bullet-list-67 text-red",
+    component: Tables,
+    layout: "/user"
+  },
+  {
     path: "/register",
     name: "Register",
     icon: "ni ni-circle-08 text-pink",
     component: Register,
-    layout: "/auth"
+    layout: "/user"
   }
 ];
 export default routes;

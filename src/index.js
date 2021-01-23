@@ -46,6 +46,12 @@ ReactDOM.render(
           return <Redirect to={{ pathname: "/login" }} />;
           }}
       /> */}
+      <Route path='/user' render={props => <UserLayout {...props} />} />
+      {/* <Route path="/logout" render={() => {
+          Auth.deauthenticateUser();
+          return <Redirect to={{ pathname: "/login" }} />;
+          }}
+      /> */}
       <Redirect from="/" to="/auth" />
     </Switch>
   </BrowserRouter>,

@@ -41,10 +41,6 @@ class LoginApi {
         .then((responseData) => {
             console.log(responseData);
             window.localStorage.setItem("token",responseData.token);
-            // document.location.("http://localhost:3000/admin");
-            this.props.history.push('/admin');
-
-            
         });
     }
 }
