@@ -24,7 +24,7 @@ import AdminNavbar from "components/Navbars/AdminNavbar.js";
 import AdminFooter from "components/Footers/AdminFooter.js";
 import Sidebar from "components/Sidebar/Sidebar.js";
 
-import routes from "routes.js";
+import routesUser from "routes_user.js";
 
 class User extends React.Component {
   componentDidUpdate(e) {
@@ -32,8 +32,8 @@ class User extends React.Component {
     document.scrollingElement.scrollTop = 0;
     this.refs.mainContent.scrollTop = 0;
   }
-  getRoutes = routes => {
-    return routes.map((prop, key) => {
+  getRoutes = routesUser => {
+    return routesUser.map((prop, key) => {
       if (prop.layout === "/user") {
         return (
           <Route
@@ -48,13 +48,13 @@ class User extends React.Component {
     });
   };
   getBrandText = path => {
-    for (let i = 0; i < routes.length; i++) {
+    for (let i = 0; i < routesUser.length; i++) {
       if (
         this.props.location.pathname.indexOf(
-          routes[i].layout + routes[i].path
+          routesUser[i].layout + routesUser[i].path
         ) !== -1
       ) {
-        return routes[i].name;
+        return routesUser[i].name;
       }
     }
     return "Brand";
@@ -64,9 +64,9 @@ class User extends React.Component {
       <>
         <Sidebar
           {...this.props}
-          routes={routes}
+          routes={routesUser}
           logo={{
-            innerLink: "/admin/index",
+            innerLink: "/user/index",
             imgSrc: require("assets/img/brand/argon-react.png"),
             imgAlt: "..."
           }}
@@ -77,7 +77,7 @@ class User extends React.Component {
             brandText={this.getBrandText(this.props.location.pathname)}
           />
           <Switch>
-            {this.getRoutes(routes)}
+            {this.getRoutes(routesUser)}
             <Redirect from="*" to="/admin/index" />
           </Switch>
           <Container fluid>

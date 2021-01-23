@@ -17,8 +17,7 @@
 */
 import Index from "views/Index.js";
 import Profile from "views/examples/Profile.js";
-import Maps from "views/examples/Maps.js";
-import ViajesAdmin from "views/examples/Maps.js";
+import ViajesAdmin from "views/examples/ViajesAdmin.js";
 import Register from "views/examples/Register.js";
 import Login from "views/examples/Login.js";
 import Tables from "views/examples/Tables.js";
@@ -41,16 +40,9 @@ var routes = [
     layout: "/admin"
   },
   {
-    path: "/viajes",
-    name: "Viajes",
+    path: "/viajesadmin",
+    name: "ViajesAdmin",
     icon: "ni ni-pin-3 text-orange",
-    component: Maps,
-    layout: "/admin"
-  },
-  {
-    path: "/viajes",
-    name: "Viajes",
-    icon: "fa fa-bicycle text-blue",
     component: ViajesAdmin,
     layout: "/admin"
   },
