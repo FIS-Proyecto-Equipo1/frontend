@@ -128,11 +128,9 @@ class Sidebar extends React.Component {
           {/* Brand */}
           {logo ? (
             <NavbarBrand className="pt-0" {...navbarBrandProps}>
-              <img
-                alt={logo.imgAlt}
-                className="navbar-brand-img"
-                src={logo.imgSrc}
-              />
+              <a aria-current="page" class="nav-link active" href="/admin/index">
+              <img src="https://avatars.githubusercontent.com/u/76447491?s=200&v=4"/>
+              </a>
             </NavbarBrand>
           ) : null}
           {/* User */}
