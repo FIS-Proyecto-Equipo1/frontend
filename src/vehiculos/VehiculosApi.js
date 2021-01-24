@@ -18,10 +18,12 @@ class VehiculosApi {
     }
 
     static deleteVehicle(matricula){
+        let currentRol=window.localStorage.getItem("rol");
         const headers = {
             'Authorization':'Bearer '+window.localStorage.getItem("token"),
             Accept: 'application/json',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'rol':currentRol
         };
         console.log("Deleting: "+matricula);
         const requestOptions = {
@@ -32,10 +34,12 @@ class VehiculosApi {
     }
     
     static postVehicle(vehiculo){
+        let currentRol=window.localStorage.getItem("rol");
         const headers = {
             'Authorization':'Bearer '+window.localStorage.getItem("token"),
             Accept: 'application/json',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'rol':currentRol
         };
         return fetch(VehiculosApi.API_BASE_URL + "/vehicles", {
             method: 'POST',
@@ -52,11 +56,13 @@ class VehiculosApi {
         });
     }
     static updateVehicle(vehiculo){
+        let currentRol=window.localStorage.getItem("rol");
         const headers = {
             // 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
             'Authorization':'Bearer '+window.localStorage.getItem("token"),
             Accept: 'application/json',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'rol':currentRol
         };
         // const formData = new URLSearchParams();
         // const formData =[

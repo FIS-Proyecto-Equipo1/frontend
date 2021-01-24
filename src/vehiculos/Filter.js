@@ -23,11 +23,7 @@ class Filter extends React.Component {
     clickSearch(){
         console.log(this.state);
         this.props.onFilter(this.state);
-        this.setState({ 
-            estado: '',
-            permiso: '',
-            tipo: ''
-        });
+        
     }
 
     render(){
