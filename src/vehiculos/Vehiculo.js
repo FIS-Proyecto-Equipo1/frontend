@@ -1,4 +1,5 @@
 import React from 'react';
+import VehicleBase from './VehiculoBase.js';
 
 function Vehiculo(props){
     return (

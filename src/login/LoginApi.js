@@ -1,5 +1,5 @@
 
-import { useHistory } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 class LoginApi {
     //static API_BASE_URL = "https://fis-2020-vehicles.herokuapp.com/api/v1";
     // static API_BASE_URL = "https://cors-anywhere.herokuapp.com/https://urbanio-autenticacion.herokuapp.com/api/v1";
@@ -41,8 +41,7 @@ class LoginApi {
         .then((responseData) => {
             console.log(responseData);
             window.localStorage.setItem("token",responseData.token);
-
-            
+            window.localStorage.setItem("rol",responseData.rol);
         });
     }
 }
