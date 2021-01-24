@@ -1,16 +1,15 @@
 import React from 'react';
-import Vehiculo from './Vehiculo.js';
+import VehiculoBase from './VehiculoBase.js';
 import Alert from './Alert.js';
 import AlertS from './AlertS.js';
 import Filter from './Filter.js';
-import NuevoVehiculo from './NuevoVehiculo.js'
-import EditVehiculo from './EditVehiculo.js'
+
 
 import VehiculosApi from './VehiculosApi.js';
 
 import axios from 'axios';
 
-class Vehiculos extends React.Component {
+class Vehiculos_for_users extends React.Component {
     constructor(props) {
         super(props);
         this.state = { 
@@ -19,7 +18,6 @@ class Vehiculos extends React.Component {
             vehiculos: [],
             isEditing: {}
         };
-        this.handleEdit = this.handleEdit.bind(this); //necesario para poder utilizar this
         this.handleCloseError = this.handleCloseError.bind(this);
         this.handleCloseSuccess = this.handleCloseSuccess.bind(this);
         this.handleFilter = this.handleFilter.bind(this);
@@ -57,43 +55,6 @@ class Vehiculos extends React.Component {
     handleCloseSuccess(){
         this.setState({
             successInfo:null //asegurarse de que el estado es inmutable
-        });
-    }
-
-    handleCancel(matricula, vehiculo){
-        this.setState(prevState => {
-            const isEditing = Object.assign({}, prevState.isEditing);
-            delete isEditing[matricula];
-            return {
-                isEditing: isEditing
-            }
-        })
-    }
-
-    handleChange(matricula, vehiculo){
-        this.setState(prevState => ({
-            isEditing: {...prevState.isEditing, [matricula]: vehiculo}
-        }))
-    }
-
-    handleSave(matricula, vehiculo){
-        this.setState(prevState => {
-            const isEditing = Object.assign({}, prevState.isEditing);
-            delete isEditing[matricula];
-            if(matricula === vehiculo.matricula) {
-                const vehiculos = prevState.vehiculos;
-                const pos = vehiculos.findIndex(v => v.matricula === vehiculo.matricula);
-                console.log(vehiculos[pos]);
-                VehiculosApi.updateVehicle(vehiculo);
-                return {
-                    vehiculos: [...vehiculos.slice(0,pos),vehiculo, ...vehiculos.slice(pos + 1)],
-                    isEditing: isEditing
-                }
-            }
-            return{
-                errorInfo: "Cannot edit matricula"
-                // isEditing: isEditing
-            }
         });
     }
 
@@ -136,21 +97,12 @@ class Vehiculos extends React.Component {
                         </tr>
                     </thead>
                     <tbody>
-                    {this.state.vehiculos.map((vehiculo) => 
-                        ! this.state.isEditing[vehiculo.matricula] ?
-                        <Vehiculo key={vehiculo.matricula} vehiculo={vehiculo} 
-                        onEdit={this.handleEdit}
-                        onDelete={this.handleDelete.bind(this,vehiculo)}/>
-                        :
-                        <EditVehiculo key={vehiculo.matricula} vehiculo={this.state.isEditing[vehiculo.matricula]} 
-                            onCancel={this.handleCancel.bind(this,vehiculo.matricula)}
-                            onChange={this.handleChange.bind(this,vehiculo.matricula)}
-                            onSave={this.handleSave.bind(this,vehiculo.matricula)}/>
-                    )}
+                        {this.state.vehiculos.map((vehiculo) => 
+                            <VehiculoBase key={vehiculo.matricula} vehiculo={vehiculo} />)}
                     </tbody>
                 </table>
             </div>
         );
     }    
 }
-export default Vehiculos;
+export default Vehiculos_for_users;

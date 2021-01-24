@@ -23,8 +23,8 @@ function EditBill(props) {
             </select>
             </td>
             <td>
-                <button className="btn btn-primary" onClick={() => props.onSave(props.bill)}>Save</button>
-                <button className="btn btn-primary" onClick={() => props.onCancel(props.bill)}>Cancel</button>
+                <button className="btn btn-success" onClick={() => props.onSave(props.bill)}>Guardar</button>
+                <button className="btn btn-danger" onClick={() => props.onCancel(props.bill)}>Cancelar</button>
             </td>
         </tr>
     )
