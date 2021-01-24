@@ -55,7 +55,7 @@ class NewBill extends React.Component {
                     <option value="No pagado">No pagado</option> 
                 </select>
                 </td>
-                <td><button className="btn btn-primary" onClick={this.clickAdd}>Save Bill</button></td>
+                <td><button className="btn btn-success" onClick={this.clickAdd}>Guardar factura</button></td>
                 
             </tr>
         );
