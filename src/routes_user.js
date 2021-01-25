@@ -1,6 +1,7 @@
 import Maps from "views/examples/Maps.js";
 import Index from "views/Index.js";
 import Vehicles from "views/examples/Vehicles4Users.js";
+import Reservas from "views/examples/Reservas.js";
 
 var routesUser = [
 
@@ -16,6 +17,13 @@ var routesUser = [
         name: "Vehicles",
         icon: "fa fa-bicycle text-blue",
         component: Vehicles,
+        layout: "/user"
+      },
+      {
+        path: "/reservas",
+        name: "Reservas",
+        icon: "fa fa-bookmark text-green",
+        component: Reservas,
         layout: "/user"
       },
       {

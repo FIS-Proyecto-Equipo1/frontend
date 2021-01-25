@@ -1,20 +1,24 @@
+import axios from 'axios';
+
 class ReservasApi {
-    static API_BASE_URL = "https://urbanio-reservas.herokuapp.com/api/v1";
+    static API_BASE_URL = "https://urbanio.herokuapp.com/api/v1";
 
     static requestHeaders(){
-        return {}
+        return {
+            'Authorization':'Bearer '+window.localStorage.getItem("token"),
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        };
     }
 
     static getReservas(){
         const headers = this.requestHeaders();
-        const request = new Request(ReservasApi.API_BASE_URL + "/reservas", {
-            method: 'GET',
-            headers: headers
-        });
+        // const request = new Request(ReservasApi.API_BASE_URL + "/reservas", {
+        //     method: 'GET',
+        //     headers: headers
+        // });
 
-        return fetch(request).then(response => {
-            return response.json();
-        })
+        return axios.get(ReservasApi.API_BASE_URL + "/reservas", {headers: headers})
     }
 
     static getReserva(id_reservation){
@@ -30,10 +34,7 @@ class ReservasApi {
     }
 
     static deleteReserva(id_reservation){
-        const headers = {
-            Accept: 'application/json',
-            'Content-Type': 'application/json'
-        };
+        const headers = this.requestHeaders();
         const requestOptions = {
             method: 'DELETE',
             headers: headers
@@ -42,19 +43,13 @@ class ReservasApi {
     }
     
     static postReserva(reserva){
-        const headers = {
-            Accept: 'application/json',
-            'Content-Type': 'application/json'
-        };
+        const headers = this.requestHeaders();
         return fetch(ReservasApi.API_BASE_URL + "/reservas", {
             method: 'POST',
             headers: headers,
             body: JSON.stringify({
-                id_reservation: reserva.id_reservation,
                 id_vehicle: reserva.id_vehicle, 
-                id_client: reserva.id_client, 
-                creation_datetime: reserva.creation_datetime, 
-                expiration_datetime: reserva.expiration_datetime
+                destination: reserva.destination
             })
         }).then(response => {
             console.log(response);
@@ -63,9 +58,7 @@ class ReservasApi {
     }
 
     static desbloqueaVehiculo(id_reservation){
-        const headers = {
-            Accept: 'application/json', 'Content-Type': 'application/json'
-        };
+        const headers = this.requestHeaders();
         
         return fetch(ReservasApi.API_BASE_URL + "/reservas/" + id_reservation + "/desbloquear-vehiculo", {
             method: 'POST',
