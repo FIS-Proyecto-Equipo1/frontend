@@ -45,7 +45,7 @@ class ViajesCurso extends React.Component {
             viajes_curso: prevState.viajes_curso.filter((c) => c.estado !== 'EN CURSO')
         }))
         this.state.viajes_curso.map((viaje_curso) =>
-            ViajesApi.EndTravel(viaje_curso._id, formattedRunningTime, viaje_curso.id_vehiculo))
+            ViajesApi.EndTravel(viaje_curso._id, formattedRunningTime, viaje_curso.id_vehiculo, viaje_curso.id_cliente))
         clearInterval(this.timer);
         
     }

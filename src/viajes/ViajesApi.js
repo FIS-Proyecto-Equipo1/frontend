@@ -2,6 +2,9 @@ class ViajesApi{
     static API_BASE_URL = "https://urbanio.herokuapp.com/api/v1"; //api_gateway
     //static API_BASE_URL = "https://microservice-travel.herokuapp.com/api/v1";
     //static API_BASE_URL = "http://localhost:4000/api/v1"; //local
+   //static id_cliente = window.localStorage.getItem('user');
+   static id_cliente = "5ffaf5695dc3ce0fa81f16b2";
+   static token = window.localStorage.getItem('token');
 
     static requestHeaders(){
         const headers = new Headers();
@@ -10,9 +13,6 @@ class ViajesApi{
             headers
         }
     }
-
-    static id_cliente = window.localStorage.getItem('user');
-    static token = window.localStorage.getItem('token');
 
     static getAllTravels() {
         const headers = this.requestHeaders();
@@ -51,7 +51,7 @@ class ViajesApi{
         });
     }   
 
-    static EndTravel(_id, duracion, id_vehiculo) {
+    static EndTravel(_id, duracion, id_vehiculo, id_cliente) {
         const headers = this.requestHeaders();
         const request = new Request(ViajesApi.API_BASE_URL + "/travels/" + _id, {
             method: 'PATCH',
@@ -63,7 +63,8 @@ class ViajesApi{
             body: JSON.stringify({
                 'estado': 'FINALIZADO',
                 'duracion': duracion,
-                'id_vehiculo': id_vehiculo
+                'id_vehiculo': id_vehiculo,
+                'id_cliente': id_cliente
             })
             //body: JSON.stringify(data)
         });
