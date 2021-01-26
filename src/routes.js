@@ -41,7 +41,7 @@ var routes = [
   },
   {
     path: "/viajesadmin",
-    name: "ViajesAdmin",
+    name: "Viajes",
     icon: "ni ni-pin-3 text-orange",
     component: ViajesAdmin,
     layout: "/admin"

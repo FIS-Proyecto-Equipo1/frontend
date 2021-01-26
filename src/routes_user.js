@@ -6,7 +6,7 @@ var routesUser = [
 
     {
         path: "/viajesuser",
-        name: "ViajesUser",
+        name: "Viajes",
         icon: "ni ni-pin-3 text-orange",
         component: Maps,
         layout: "/user"

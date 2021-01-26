@@ -2,7 +2,7 @@ import React from 'react';
 import Viaje from './viaje.js';
 import ViajesApi from './ViajesApi.js';
 
-class ViajesAdmin extends React.Component {
+class Viajes_admin extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -13,7 +13,7 @@ class ViajesAdmin extends React.Component {
     }
 
     componentDidMount() {  //react va a llamar a este método cuando el componente se instancia
-        ViajesApi.getAllTravels()
+        ViajesApi.getAllTravelsAdmin()
             .then(
                 (result) => {
                     this.setState({
@@ -57,4 +57,4 @@ class ViajesAdmin extends React.Component {
     }
 }
 
-export default ViajesAdmin; 
+export default Viajes_admin; 
