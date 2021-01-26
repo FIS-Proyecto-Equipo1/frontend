@@ -37,6 +37,18 @@ import {
 } from "reactstrap";
 
 class AdminNavbar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.logout = this.logout.bind(this);
+  }
+
+  logout(){
+    console.log("tell me");
+    window.localStorage.removeItem("rol");
+    window.localStorage.removeItem("token");
+    this.props.history.push("/auth/login");
+  }
+
   render() {
     return (
       <>
@@ -65,10 +77,9 @@ class AdminNavbar extends React.Component {
                 <DropdownToggle className="pr-0" nav>
                   <Media className="align-items-center">
                     <span className="avatar avatar-sm rounded-circle">
-                      <img
-                        alt="..."
-                        src={require("assets/img/theme/team-4-800x800.jpg")}
-                      />
+                      <a className="nav-link-icon nav-link">
+                        <i className="ni ni-single-02"></i>
+                      </a> 
                     </span>
                     <Media className="ml-2 d-none d-lg-block">
                       <UIuserInfo/>
@@ -98,7 +109,11 @@ class AdminNavbar extends React.Component {
                   <DropdownItem divider />
                   <DropdownItem href="#pablo" onClick={e => e.preventDefault()}>
                     <i className="ni ni-user-run" />
-                    <button className="">Logout</button>
+                    <button onClick={ () => {
+                                       this.logout();
+                                        }}>
+                        Logout
+                        </button>
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>

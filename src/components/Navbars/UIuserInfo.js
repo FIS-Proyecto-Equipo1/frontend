@@ -6,7 +6,7 @@ class UIuserInfo extends React.Component {
     }
 
     render(){
-        let user = window.localStorage.getItem("user");
+        let user = window.localStorage.getItem("rol");
         return <span>{user}</span>
     }
 }
