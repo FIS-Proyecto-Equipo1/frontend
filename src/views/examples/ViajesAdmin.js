@@ -17,9 +17,8 @@
 */
 import React from "react";
 import Header from "components/Headers/Header.js";
-import { Card, Container, Row } from "reactstrap";
-import Viajes from "viajes/viajes.js";
-import ViajesCurso from "viajes/viajes_curso.js";
+import {Container} from "reactstrap";
+import Viajes_admin from "viajes/viajes_admin.js";
 
 class ViajesAdmin extends React.Component {
   state = {};
@@ -31,10 +30,8 @@ class ViajesAdmin extends React.Component {
         <Container className=" mt--5" fluid>
           {/* Table */}
           <div>
-            <h1>Viajes en Curso</h1>
-            <ViajesCurso/>
-            <h1 >VIAJES ADMIN</h1>
-            <Viajes/>
+            <h1>ViajesAdmin</h1>
+            <Viajes_admin/>
            </div>
         </Container>
       </>

@@ -41,7 +41,7 @@ class Header extends React.Component {
                             Available vehicles
                           </CardTitle>
                           <span className="h2 font-weight-bold mb-0">
-                            0
+                            32
                           </span>
                         </div>
                         <Col className="col-auto">
@@ -71,7 +71,7 @@ class Header extends React.Component {
                             Usuarios
                           </CardTitle>
                           <span className="h2 font-weight-bold mb-0">
-                            0
+                            6
                           </span>
                         </div>
                         <Col className="col-auto">

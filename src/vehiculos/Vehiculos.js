@@ -147,25 +147,35 @@ class Vehiculos extends React.Component {
                 successInfo:null
             });
         }else{
-                const vehiculos = prevState.vehiculos; //Cogemos los vehiculos existentes
-                if (! vehiculos.find(v => v.matricula === vehiculo.matricula)) { //Comprobamos que no añadamos uno existente
-                    console.log("AddVehiculo: "+vehiculo);
-                    VehiculosApi.postVehicle(vehiculo);
-                    return ({
-                        vehiculos: [...prevState.vehiculos, vehiculo],
-                        successInfo: "Vehicles added succesfully",
-                        errorInfo:null
-                        // errorInfo: "Vehicle added succesfully"
-                    });
+                if(this.isInvalid(vehiculo.localizacion))
+                {
+                    return({
+                        //vehiculos: [...prevState.vehiculos, vehiculo]
+                        errorInfo: "Location is required",
+                        successInfo:null
+                        });
+                }
+                else
+                {
+                    const vehiculos = prevState.vehiculos; //Cogemos los vehiculos existentes
+                    if (! vehiculos.find(v => v.matricula === vehiculo.matricula)) { //Comprobamos que no añadamos uno existente
+                        console.log("AddVehiculo: "+vehiculo);
+                        VehiculosApi.postVehicle(vehiculo);
+                        return ({
+                            vehiculos: [...prevState.vehiculos, vehiculo],
+                            successInfo: "Vehicles added succesfully",
+                            errorInfo:null
+                            // errorInfo: "Vehicle added succesfully"
+                        });
                 }
                 else{
-                return({
+                    return({
                     //vehiculos: [...prevState.vehiculos, vehiculo]
                     errorInfo: "Vehicle already exists",
                     successInfo:null
                     });
                 }
-        }
+        }}
     });
     }
 

@@ -40,13 +40,6 @@ var routes = [
     layout: "/admin"
   },
   {
-    path: "/viajesadmin",
-    name: "ViajesAdmin",
-    icon: "ni ni-pin-3 text-orange",
-    component: ViajesAdmin,
-    layout: "/admin"
-  },
-  {
     path: "/reservas",
     name: "Reservas",
     icon: "fa fa-bookmark text-green",
@@ -54,12 +47,13 @@ var routes = [
     layout: "/admin"
   },
   {
-    path: "/user-profile",
-    name: "User Profile",
-    icon: "ni ni-single-02 text-yellow",
-    component: Profile,
+    path: "/viajesadmin",
+    name: "Viajes",
+    icon: "ni ni-pin-3 text-orange",
+    component: ViajesAdmin,
     layout: "/admin"
   },
+
   {
     path: "/bills",
     name: "Bills",
