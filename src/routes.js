@@ -60,6 +60,13 @@ var routes = [
     icon: "ni ni-bullet-list-67 text-red",
     component: Bills,
     layout: "/admin"
+  },
+  {
+    path: "/login",
+    name: "Login",
+    icon: "ni ni-key-25 text-info",
+    component: Login,
+    layout: "/auth"
   }
 ];
 export default routes;
