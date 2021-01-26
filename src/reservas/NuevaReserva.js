@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import Alert from './Alert.js';
 import VehiculosApi from '../vehiculos/VehiculosApi.js';
 import Select from 'react-select'
 import ReservasApi from './ReservasApi.js';
@@ -15,6 +16,7 @@ class NuevaReserva extends React.Component {
         this.changeMatricula = this.changeMatricula.bind(this);
         this.changeDestination = this.changeDestination.bind(this);
         this.clickAdd = this.clickAdd.bind(this);
+        this.handleCloseError = this.handleCloseError.bind(this);
     }
 
     // vehiculos = []
@@ -53,32 +55,55 @@ class NuevaReserva extends React.Component {
         });
     }
 
+    handleCloseError(){
+        this.setState({
+            errorInfo: null
+        });
+    }
+
     clickAdd() {
         console.log(this.state)
+        if(this.state.add_id_vehicle == ""){
+            this.setState({errorInfo: "Tiene que seleccionar un vehiculo"});
+            return
+        }
+        if(this.state.destination == ""){
+            this.setState({errorInfo: "Tiene que indicar un destino"});
+            return
+        }
         const reserva = {
             id_vehicle: this.state.add_id_vehicle,
             destination: this.state.destination
         }
-        ReservasApi.postReserva(reserva).then(reservaGuardada => {
-            console.log("Guardado"+reservaGuardada)
+        ReservasApi.postReserva(reserva).then(result => {
+            
+            if( result.error){
+                this.setState({
+                    errorInfo: result.error
+                })
+                return
+            }
+            console.log("Guardado"+result)
             this.componentDidMount()
             this.props.reloadReservas()
+            this.setState({
+                id_reservation: 0,
+                id_vehicle: '',
+                add_id_vehicle: '',
+                add_destination: '',
+                id_client: 0,
+                creation_datetime: 0,
+                expiration_datetime: 0
+            });
         })
-        this.setState({
-            id_reservation: 0,
-            id_vehicle: '',
-            add_id_vehicle: '',
-            add_destination: '',
-            id_client: 0,
-            creation_datetime: 0,
-            expiration_datetime: 0
-        });
+        
     }
 
     render() {
         return (
             <div>
                 <h2>Añadir reserva</h2>
+                <Alert message={this.state.errorInfo} onClose={this.handleCloseError}/>
                 <div><label>Vehículo:</label>
                 <Select 
                         name="id_vehicle" id="id_vehicle" 

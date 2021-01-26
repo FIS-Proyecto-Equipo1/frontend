@@ -39,7 +39,10 @@ class ReservasApi {
             method: 'DELETE',
             headers: headers
         };
-        fetch(ReservasApi.API_BASE_URL + "/reservas/" + id_reservation, requestOptions);
+        return fetch(ReservasApi.API_BASE_URL + "/reservas/" + id_reservation, requestOptions).then(response => {
+            console.log(response);
+            return response.json();
+        });
     }
     
     static postReserva(reserva){

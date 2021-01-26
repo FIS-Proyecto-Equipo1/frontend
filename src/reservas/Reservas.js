@@ -61,10 +61,21 @@ class Reservas extends React.Component {
     }
 
     handleDelete(reserva){
-        this.setState(prevState => ({
-            reservas: prevState.reservas.filter((res) => res._id !== reserva._id)
-        }))
-        ReservasApi.deleteReserva(reserva);
+        ReservasApi.deleteReserva(reserva)
+        .then(result => {
+            if( result.error){
+                this.setState({
+                    errorInfo: result.error
+                })
+                return
+            }
+            // console.log(errorM)
+            this.handleReload();
+        },(error) => {
+            this.setState({
+                errorInfo: "Problem with connection to server"
+            })
+        });
     }
 
     handleCloseError(){
@@ -82,45 +93,23 @@ class Reservas extends React.Component {
     handleDesbloquear(_id, reserva){
         console.log("Desbloquear " + _id)
         ReservasApi.desbloqueaVehiculo(_id)
-        .then(resp => {
+        .then(result => {
+            if( result.error){
+                this.setState({
+                    errorInfo: result.error
+                })
+                return
+            }
             this.handleReload();
         });
     }
 
-    deleteVehiculo(reserva){
-        this.setState(prevState => {
-            const reservas = prevState.reservas;
-            if (reservas.find(res => res._id === reserva._id)) {
-                ReservasApi.deleteReserva(reserva._id);
-                return({
-                    reservas: [...prevState.reservas]
-                });
-            }
-            return({
-                errorInfo: "The reservation does not exist"
-            });
-        });
-    }
 
     isInvalid(stringValue)
     {
         return stringValue === "" || stringValue === "--"
     }
 
-    addReserva(reserva){
-        this.setState(prevState => {
-            const reservas = prevState.reserva;
-            if (! reservas.find(res => res._id === reserva._id)) {
-                ReservasApi.postReserva(reserva);
-                return ({reservas: [...prevState.reservas, reserva]});
-            }
-            else{
-            return({
-                errorInfo: "Reservation already exists"
-                });
-            }
-        });    
-    }
 
     render(){
         return (
