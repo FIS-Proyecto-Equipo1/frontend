@@ -17,6 +17,7 @@
 */
 import React from "react";
 import { Link } from "react-router-dom";
+import UIuserInfo from "./UIuserInfo.js";
 // reactstrap components
 import {
   DropdownMenu,
@@ -70,9 +71,7 @@ class AdminNavbar extends React.Component {
                       />
                     </span>
                     <Media className="ml-2 d-none d-lg-block">
-                      <span className="mb-0 text-sm font-weight-bold">
-                        Jessica Jones
-                      </span>
+                      <UIuserInfo/>
                     </Media>
                   </Media>
                 </DropdownToggle>
@@ -99,7 +98,7 @@ class AdminNavbar extends React.Component {
                   <DropdownItem divider />
                   <DropdownItem href="#pablo" onClick={e => e.preventDefault()}>
                     <i className="ni ni-user-run" />
-                    <span>Logout</span>
+                    <button className="">Logout</button>
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
