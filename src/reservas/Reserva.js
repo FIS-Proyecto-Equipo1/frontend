@@ -11,9 +11,9 @@ function Reserva(props){
             <td>{ moment(props.reserva.creation_datetime)
             .local()
             .format("DD-MM-YYYY hh:mm:ss a")}</td>
-            <td>{moment(props.reserva.expiration_datetime)
+            <td>{ props.reserva.expiration_datetime? moment(props.reserva.expiration_datetime)
             .local()
-            .format("DD-MM-YYYY hh:mm:ss a")}</td>
+            .format("DD-MM-YYYY hh:mm:ss a"):''}</td>
             <td>
                 
                      {  props.reserva.status ==='RESERVADA' && props.rol == "USER" ? 
