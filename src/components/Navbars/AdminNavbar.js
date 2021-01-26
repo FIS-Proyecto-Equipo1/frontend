@@ -46,6 +46,7 @@ class AdminNavbar extends React.Component {
     console.log("tell me");
     window.localStorage.removeItem("rol");
     window.localStorage.removeItem("token");
+    window.localStorage.removeItem("user");
     this.props.history.push("/auth/login");
   }
 
