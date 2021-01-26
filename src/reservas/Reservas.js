@@ -22,6 +22,7 @@ class Reservas extends React.Component {
     }
 
     componentDidMount() {
+        this.setState({rol: window.localStorage.getItem("rol")})
         ReservasApi.getReservas()
         // axios.get(ReservasApi.API_BASE_URL + "/reservas")
             .then(
@@ -125,7 +126,7 @@ class Reservas extends React.Component {
         return (
             <div>
                 <Alert message={this.state.errorInfo} onClose={this.handleCloseError}/>
-                <NuevaReserva reloadReservas={this.handleReload.bind()}/>
+                {this.state.rol == "USER"?<NuevaReserva reloadReservas={this.handleReload.bind()}/>:''}
                 <table className="table">
                     <thead>
                         <tr>
@@ -140,7 +141,7 @@ class Reservas extends React.Component {
                     </thead>
                     <tbody>
                     {this.state.reservas.map((reserva) => 
-                        <Reserva key={reserva._id} reserva={reserva} 
+                        <Reserva key={reserva._id} reserva={reserva} rol={this.state.rol}
                         onEdit={this.handleEdit}
                         onDelete={this.handleDelete.bind(this,reserva._id)}
                         onDesbloquear={this.handleDesbloquear.bind(this,reserva._id)}/>
