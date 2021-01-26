@@ -40,13 +40,6 @@ var routes = [
     layout: "/admin"
   },
   {
-    path: "/viajesadmin",
-    name: "ViajesAdmin",
-    icon: "ni ni-pin-3 text-orange",
-    component: ViajesAdmin,
-    layout: "/admin"
-  },
-  {
     path: "/reservas",
     name: "Reservas",
     icon: "fa fa-bookmark text-green",
@@ -54,25 +47,19 @@ var routes = [
     layout: "/admin"
   },
   {
-    path: "/user-profile",
-    name: "User Profile",
-    icon: "ni ni-single-02 text-yellow",
-    component: Profile,
+    path: "/viajesadmin",
+    name: "Viajes",
+    icon: "ni ni-pin-3 text-orange",
+    component: ViajesAdmin,
     layout: "/admin"
   },
+
   {
     path: "/bills",
     name: "Bills",
     icon: "ni ni-bullet-list-67 text-red",
     component: Bills,
     layout: "/admin"
-  },
-  {
-    path: "/login",
-    name: "Login",
-    icon: "ni ni-key-25 text-info",
-    component: Login,
-    layout: "/auth"
   }
 ];
 export default routes;

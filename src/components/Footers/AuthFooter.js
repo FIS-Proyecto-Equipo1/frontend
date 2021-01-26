@@ -30,7 +30,7 @@ class Login extends React.Component {
             <Row className="align-items-center justify-content-xl-between">
               <Col xl="6">
                 <div className="copyright text-center text-xl-left text-muted">
-                  © 2018{" "}
+                  © 2021{" "}
                   <a
                     className="font-weight-bold ml-1"
                     href="https://www.creative-tim.com?ref=adr-auth-footer"
@@ -52,7 +52,7 @@ class Login extends React.Component {
                   </NavItem>
                   <NavItem>
                     <NavLink
-                      href="https://www.creative-tim.com/presentation?ref=adr-auth-footer"
+                      href="https://github.com/FIS-Proyecto-Equipo1"
                       target="_blank"
                     >
                       About Us
