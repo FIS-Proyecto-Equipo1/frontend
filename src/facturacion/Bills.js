@@ -18,6 +18,7 @@ class Bills extends React.Component {
         this.handleDelete = this.handleDelete.bind(this);
         this.handleCloseError = this.handleCloseError.bind(this);
         this.addBill = this.addBill.bind(this);
+        // this.handleGenerate = this.handleGenerate.bind(this);
     }
 
     componentDidMount() {
@@ -38,6 +39,10 @@ class Bills extends React.Component {
         }));
     }
 
+/*    handleGenerate(bill) {
+        BillsApi.GeneratePdf(bill.billNumber);
+    }
+*/
     handleDelete(bill) {
         this.setState(prevState => ({
             bills: prevState.bills.filter((b) => b.billNumber !== bill.billNumber)
@@ -106,6 +111,66 @@ class Bills extends React.Component {
         return stringValue.match(DURATION_STRINGR_REG_EX)
     }
 
+    rateCalculation (vehicle){
+        let rate;
+        switch(vehicle){
+            case "Coche":
+                rate = 3;
+                break;
+            case "Moto":
+                rate = 2;
+                break;
+            case "Bici":
+                rate = 1;
+                break;  
+            default:
+                rate = 1;   
+                break;  
+        }
+        return rate;
+    }
+    
+    durationMinutesConversion (duration){
+        let durationSplited = duration.split(":");
+        let hours = parseInt(durationSplited[0] * 60);
+        let min = parseInt(durationSplited[1]);
+        let sec = 1;
+        if(parseInt(durationSplited[2]) === 0){
+            sec = 0;
+        }
+        return hours+min+sec;
+    }
+    
+    amountCalculation (duration, vehicle){
+        let rate = this.rateCalculation(vehicle);
+        let minTax = 1.25;
+        let amount = (this.rateConversion(rate) * this.durationMinutesConversion(duration))/100;
+        if(amount>=minTax){
+            return amount;
+        } else{
+            return minTax;
+        }
+    }
+    rateConversion(rate){
+        let conversion;
+        switch(rate){
+            case 3:
+                conversion = 15;
+                break;
+            case 2:
+                conversion = 10;
+                break;
+             case 1:
+                conversion = 5;
+                break;
+            default:
+                console.error("Not admitted rate!!"); 
+                break;
+    
+        }
+        return conversion
+    }
+
     addBill(bill) {
         if(this.isInvalid(bill.billStatus) 
             || this.isInvalid(bill.vehicle)
@@ -120,6 +185,8 @@ class Bills extends React.Component {
                 if (! bills.find(v => v.billNumber === bill.billNumber || ! this.invalidBillNumber(bill.billNumber) || ! this.invalidDuration(bill.duration))) { 
                     console.log("addBill: " + bill);
                     BillsApi.postBill(bill);
+                    bill.rate = this.rateCalculation(bill.vehicle);
+                    bill.amount = this.amountCalculation(bill.duration, bill.vehicle);
                     return ({bills: [...prevState.bills, bill], errorInfo: "!Factura creada correctamente"})
                 }
                 else if (this.invalidBillNumber(bill.billNumber) === null){
@@ -166,7 +233,9 @@ class Bills extends React.Component {
                 ! this.state.isEditing[bill.billNumber] ?
                 <Bill key={bill.billNumber} bill={bill} 
                     onEdit={this.handleEdit}
-                    onDelete={this.handleDelete}/>
+                    onDelete={this.handleDelete}
+                    // onGenerate={this.handleGenerate}
+                    />
                 :
                 <EditBill key={bill.billNumber} bill={this.state.isEditing[bill.billNumber]} 
                     onCancel={this.handleCancel.bind(this, bill.billNumber)}

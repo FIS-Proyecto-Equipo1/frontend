@@ -20,11 +20,7 @@ import React from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 // reactstrap components
 
-import Alert from "facturacion/Alert.js";
-import Bill from "facturacion/Bill.js";
-import NewBill from "facturacion/NewBill.js";
 import Bills from "facturacion/Bills.js";
-import EditBill from "facturacion/EditBill.js";
 
 
 import {

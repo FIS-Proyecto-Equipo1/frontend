@@ -76,6 +76,24 @@ class BillsApi {
         };
         fetch(BillsApi.API_BASE_URL + "/bills/"+ billNumber,requestOptions);
     }
+
+    /* static GeneratePdf(billNumber){
+        const headers = {
+            'Access-Control-Allow-Origin': 'https://cors-anywhere.herokuapp.com/https://backend-facturacion-1.herokuapp.com/api/v1/bills/generatePdf/US23456',
+            'Access-Control-Allow-Methods': 'GET',
+            'Access-Control-Allow-Headers': 'Content-Type',
+            'Content-disposition': 'attachment; filename=pdf.pdf',
+            'Accept-ranges': 'bytes',
+            'Content-Type': 'application/pdf'
+
+        };
+        console.log("Generating PDF: " + billNumber);
+        fetch(BillsApi.API_BASE_URL + "/bills/generatePdf/" + billNumber, {
+            method: 'GET',
+            headers: headers,
+        });
+    }
+    */
 }
 
 export default BillsApi;

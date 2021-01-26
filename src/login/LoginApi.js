@@ -40,6 +40,7 @@ class LoginApi {
         .then((response) => response.json())
         .then((responseData) => {
             console.log(responseData);
+            window.localStorage.setItem("user",document.getElementById("username").value);
             window.localStorage.setItem("token",responseData.token);
             window.localStorage.setItem("rol",responseData.rol);
         });

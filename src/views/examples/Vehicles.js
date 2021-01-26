@@ -49,7 +49,7 @@ class Vehicles extends React.Component {
         <Container className=" mt--5" fluid>
           {/* Table */}
           <div>
-            <h1>Tus vehículos</h1>
+            <h1>Vehículos</h1>
             <Vehiculos/>
           </div>
         </Container>
