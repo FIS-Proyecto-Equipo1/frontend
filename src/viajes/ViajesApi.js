@@ -11,7 +11,7 @@ class ViajesApi{
         }
     }
 
-    static id_cliente = "777";
+    static id_cliente = window.localStorage.getItem('user');
     static token = window.localStorage.getItem('token');
 
     static getAllTravels() {
@@ -104,5 +104,23 @@ class ViajesApi{
             return response.json();
         });
     }
+
+    static getAllTravelsAdmin() {
+        const headers = this.requestHeaders();
+        const request = new Request(
+            ViajesApi.API_BASE_URL 
+            +"/travels",{
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + this.token
+            }
+        });
+        return fetch(request).then(response => {
+            return response.json();
+        });
+    }
+
 }
 export default ViajesApi;
