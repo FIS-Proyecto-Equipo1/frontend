@@ -1,5 +1,5 @@
 import React from 'react';
-import { validateLocaleAndSetLanguage } from 'typescript';
+//import { validateLocaleAndSetLanguage } from 'typescript';
 
 const validBillNumberRegex = RegExp("^[A-Z]{2}(?!.*(LL|CH))[0-9]{1,5}");
 
