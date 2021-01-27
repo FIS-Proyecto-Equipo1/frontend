@@ -64,7 +64,7 @@ class ReservasApi {
         const headers = this.requestHeaders();
         
         return fetch(ReservasApi.API_BASE_URL + "/reservas/" + id_reservation + "/desbloquear-vehiculo", {
-            method: 'POST',
+            method: 'PUT',
             headers: headers,
             body: JSON.stringify({
                 // TODO: obtener vehiculo a traves del id_vehiculo de la reserva indicada 
