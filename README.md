@@ -4,6 +4,8 @@
 
 ![Alt tag](/src/assets/img/readme/login.png)
 
+## Resumen de funcionaliades conjuntas en el documento: Funcionalidades conjuntas URBANIO.pdf
+
 ## Iniciar
 
 - `npm i`
