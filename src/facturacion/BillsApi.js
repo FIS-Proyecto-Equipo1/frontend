@@ -1,14 +1,29 @@
+import axios from 'axios';
+
 class BillsApi {
-    //static API_BASE_URL = "https://backend-facturacion-1.herokuapp.com/api/v1";
-    //static API_BASE_URL = "/api/v1";
-    static API_BASE_URL ="https://cors-anywhere.herokuapp.com/https://backend-facturacion-1.herokuapp.com/api/v1"
+
+    static API_BASE_URL = "https://backend-facturacion-1.herokuapp.com/api/v1";
+    //static API_BASE_URL ="https://cors-anywhere.herokuapp.com/https://backend-facturacion-1.herokuapp.com/api/v1"
 
     static requestHeaders(){
-        return {}
+        let currentRol=window.localStorage.getItem("rol");
+        return {
+            'Authorization':'Bearer '+window.localStorage.getItem("token"),
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+            'rol':currentRol
+        };
     }
-
+    
     static getAllBills(){
-        const headers = this.requestHeaders();
+        let currentRol=window.localStorage.getItem("rol");
+        const headers = {
+            'Authorization':'Bearer '+window.localStorage.getItem("token"),
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            'rol':currentRol
+        };
         const request = new Request(this.API_BASE_URL + "/bills", {
             method: 'GET',
             headers: headers
@@ -20,9 +35,12 @@ class BillsApi {
     }
     
     static postBill(bill){
+        let currentRol=window.localStorage.getItem("rol");
         const headers = {
+            'Authorization':'Bearer '+window.localStorage.getItem("token"),
             Accept: 'application/json',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'rol':currentRol
         };
         return fetch(BillsApi.API_BASE_URL + "/bills", {
             method: 'POST',
@@ -42,9 +60,12 @@ class BillsApi {
         });
     }
     static updateBill(bill){
+        let currentRol=window.localStorage.getItem("rol");
         const headers = {
+            'Authorization':'Bearer '+window.localStorage.getItem("token"),
             Accept: 'application/json',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'rol':currentRol
         };
         console.log(bill);
         return fetch(BillsApi.API_BASE_URL + "/bills/" + bill.billNumber, {
@@ -65,9 +86,12 @@ class BillsApi {
     }
 
     static deleteBill(billNumber){
+        let currentRol=window.localStorage.getItem("rol");
         const headers = {
+            'Authorization':'Bearer '+window.localStorage.getItem("token"),
             Accept: 'application/json',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'rol':currentRol
         };
         console.log("Deleting: " + billNumber);
         const requestOptions = {

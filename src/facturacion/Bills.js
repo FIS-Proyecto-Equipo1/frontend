@@ -4,6 +4,7 @@ import Alert from './Alert.js';
 import NewBill from './NewBill.js';
 import EditBill from './EditBill.js';
 import BillsApi from './BillsApi.js';
+import axios from 'axios';
 
 
 class Bills extends React.Component {
@@ -22,6 +23,8 @@ class Bills extends React.Component {
     }
 
     componentDidMount() {
+        
+        this.setState({rol: window.localStorage.getItem("rol")})
         BillsApi.getAllBills() 
             .then(
                 (result) => {
